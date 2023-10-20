@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxg4vfywlny81"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_tgngl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qgjsu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0pen"]
+radius = 6.73642
+height = 14.8471
+
+[sub_resource type="Animation" id="Animation_rtimu"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xulc1"]
+resource_name = "run"
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0523599, -1.21107e-17, -0.0523599, -1.21107e-17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwixm"]
+_data = {
+"idle": SubResource("Animation_rtimu"),
+"run": SubResource("Animation_xulc1")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_tgngl")
+GRAVITY = 20.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(106.007, 81.6855)
+mesh = SubResource("CapsuleMesh_qgjsu")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+scale = Vector2(8.31302, 11.1806)
+shape = SubResource("CapsuleShape2D_w0pen")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xwixm")
+}
+speed_scale = 1.5

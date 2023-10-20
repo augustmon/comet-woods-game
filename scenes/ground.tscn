@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dasfn3553wadw"]
+
+[ext_resource type="Texture2D" uid="uid://dbxvbaqsjeci6" path="res://assets/icon.svg" id="1_liw3s"]
+[ext_resource type="Script" path="res://scripts/ground.gd" id="1_mskge"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tci68"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3j4ig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4isgm"]
+
+[node name="Ground" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_mskge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(61, 61)
+shape = SubResource("CircleShape2D_tci68")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(1200, 1200)
+mesh = SubResource("SphereMesh_3j4ig")
+texture = ExtResource("1_liw3s")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(59.4021, 59.4021)
+shape = SubResource("CircleShape2D_4isgm")
+debug_color = Color(0.901961, 0.290196, 0.294118, 0.419608)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
