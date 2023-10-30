@@ -1,14 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=8 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
+[ext_resource type="PackedScene" uid="uid://d1w2nlcs6vsxm" path="res://scenes/sky.tscn" id="1_jyw6d"]
 [ext_resource type="PackedScene" uid="uid://cxg4vfywlny81" path="res://scenes/player.tscn" id="2_hyots"]
 [ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="5_2u3fp"]
+[ext_resource type="PackedScene" uid="uid://chao04ufpmu6q" path="res://scenes/star.tscn" id="6_hclmw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emeci"]
 size = Vector2(105, 20)
 
 [node name="World" type="Node2D"]
+
+[node name="Sky" parent="." instance=ExtResource("1_jyw6d")]
+position = Vector2(978, 1393)
+scale = Vector2(1.08232, 1.08232)
+
+[node name="CometSpawner" type="Node2D" parent="Sky"]
+position = Vector2(-996, -1087)
+script = ExtResource("5_2u3fp")
+
+[node name="Spawntimer" type="Timer" parent="Sky/CometSpawner"]
+
+[node name="Star" parent="Sky" instance=ExtResource("6_hclmw")]
+position = Vector2(299.357, -1139.22)
+scale = Vector2(0.923941, 0.923941)
+
+[node name="Ground" parent="." instance=ExtResource("1_bfr17")]
+unique_name_in_owner = true
+position = Vector2(975.402, 1379.6)
+
+[node name="Player" parent="." instance=ExtResource("2_hyots")]
+position = Vector2(977, 667)
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(971, 778)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(3, 0)
+shape = SubResource("RectangleShape2D_emeci")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -19,23 +50,4 @@ offset_right = 57.0
 offset_bottom = 31.0
 script = ExtResource("1_6iqgl")
 
-[node name="Ground" parent="." instance=ExtResource("1_bfr17")]
-position = Vector2(993.402, 1073.6)
-
-[node name="Player" parent="." instance=ExtResource("2_hyots")]
-position = Vector2(975.376, 255.632)
-
-[node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(989, 472)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-position = Vector2(3, 0)
-shape = SubResource("RectangleShape2D_emeci")
-
-[node name="CometSpawner" type="Node2D" parent="."]
-script = ExtResource("5_2u3fp")
-
-[node name="Spawntimer" type="Timer" parent="CometSpawner"]
-
-[connection signal="timeout" from="CometSpawner/Spawntimer" to="CometSpawner" method="_on_spawntimer_timeout"]
+[connection signal="timeout" from="Sky/CometSpawner/Spawntimer" to="Sky/CometSpawner" method="_on_spawntimer_timeout"]

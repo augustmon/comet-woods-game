@@ -1,30 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dasfn3553wadw"]
+[gd_scene load_steps=8 format=3 uid="uid://dasfn3553wadw"]
 
-[ext_resource type="Texture2D" uid="uid://dbxvbaqsjeci6" path="res://assets/icon.svg" id="1_liw3s"]
 [ext_resource type="Script" path="res://scripts/ground.gd" id="1_mskge"]
+[ext_resource type="Texture2D" uid="uid://4hpdv1bx5kdk" path="res://assets/textures/murkey_green.png" id="2_76awd"]
+[ext_resource type="Texture2D" uid="uid://xblakpqm4jxy" path="res://assets/textures/foliage_green.png" id="3_sv04t"]
+[ext_resource type="Texture2D" uid="uid://cvp1xf1ramkkf" path="res://assets/textures/dark_green.png" id="3_xlsnd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4isgm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tci68"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3j4ig"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4isgm"]
-
 [node name="Ground" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_mskge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(61, 61)
-shape = SubResource("CircleShape2D_tci68")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(1200, 1200)
-mesh = SubResource("SphereMesh_3j4ig")
-texture = ExtResource("1_liw3s")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
@@ -34,5 +24,28 @@ collision_mask = 2
 scale = Vector2(59.4021, 59.4021)
 shape = SubResource("CircleShape2D_4isgm")
 debug_color = Color(0.901961, 0.290196, 0.294118, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(61, 61)
+shape = SubResource("CircleShape2D_tci68")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(1200, 1200)
+mesh = SubResource("SphereMesh_3j4ig")
+texture = ExtResource("2_76awd")
+
+[node name="SkylineSprite2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.360784)
+show_behind_parent = true
+scale = Vector2(6.0487, 6.0487)
+texture = ExtResource("3_xlsnd")
+
+[node name="SkylineSprite" type="Sprite2D" parent="."]
+visible = false
+show_behind_parent = true
+scale = Vector2(3.25859, 3.25859)
+texture = ExtResource("3_sv04t")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

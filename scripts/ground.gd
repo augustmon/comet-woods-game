@@ -19,6 +19,12 @@ func _process(delta: float) -> void:
 	apply_friction()
 	rotation += rotation_speed*delta
 	
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		var tree = get_tree()
+		tree.reload_current_scene()
+	
 func apply_friction() -> void: 
 	## OLD METHOD, WHERE THE FLOOR ALWAYS ROTATES A BIT...
 	#if sign(rotation_speed) == -1:
@@ -31,4 +37,4 @@ func apply_friction() -> void:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	print("Hitbox activated by:", body)
+	pass

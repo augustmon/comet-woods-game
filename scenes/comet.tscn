@@ -1,32 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1nqe8qdltwi7"]
+[gd_scene load_steps=7 format=3 uid="uid://d1nqe8qdltwi7"]
 
 [ext_resource type="Script" path="res://scripts/comet.gd" id="1_ulnd2"]
-[ext_resource type="Texture2D" uid="uid://dbxvbaqsjeci6" path="res://assets/icon.svg" id="2_3jeug"]
+[ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="2_21kui"]
+[ext_resource type="PackedScene" uid="uid://dj3a8c2ruetkn" path="res://scenes/utility/hit_area.tscn" id="3_ox1so"]
+[ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="4_qddtq"]
 
-[node name="Comet" type="RigidBody2D"]
+[sub_resource type="Curve" id="Curve_va5c6"]
+max_value = 5.0
+_data = [Vector2(0, 1.20509), 0.0, 0.0, 0, 0, Vector2(0.240876, 2.51871), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_xu6rc"]
+offsets = PackedFloat32Array(0, 0.0609756, 0.788618, 0.98374)
+colors = PackedColorArray(1, 1, 1, 0, 0.953168, 0.953168, 0.953168, 1, 0.394309, 0.394309, 0.394309, 1, 1, 1, 1, 0)
+
+[node name="Comet" type="StaticBody2D"]
+z_index = 1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_ulnd2")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-texture_filter = 1
-texture_repeat = 2
-texture = ExtResource("2_3jeug")
-texture_scale = Vector2(-19.6, -19.6)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_21kui")
+texture_offset = Vector2(-23, -17)
+texture_scale = Vector2(-15.6, -15.6)
 polygon = PackedVector2Array(-11, 3, -11, -13, -2, -17, 10, -15, 18, -10, 22, 4, 12, 11, 2, 13, -6, 9)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
-[node name="HitArea" type="Area2D" parent="."]
-scale = Vector2(1.1, 1.1)
-collision_layer = 2
-collision_mask = 2
+[node name="HitArea" parent="." instance=ExtResource("3_ox1so")]
 
-[node name="HitAreaCollision" type="CollisionPolygon2D" parent="HitArea"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+amount = 42
+lifetime = 8.0
+speed_scale = 8.0
+lifetime_randomness = 0.1
+texture = ExtResource("4_qddtq")
+particle_flag_align_y = true
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 0.01
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_va5c6")
+color_ramp = SubResource("Gradient_xu6rc")
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
