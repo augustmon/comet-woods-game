@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://02r34xhsx077"]
+
+[ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b0ixe"]
+[ext_resource type="Shader" path="res://resources/blinking.gdshader" id="2_5bn1y"]
+[ext_resource type="Script" path="res://scripts/shooting_star.gd" id="2_qs410"]
+[ext_resource type="Texture2D" uid="uid://crsad0ljsak6e" path="res://assets/textures/grey_brown.png" id="3_7k6uo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_noafu"]
+shader = ExtResource("2_5bn1y")
+shader_parameter/red = 0.9
+shader_parameter/green = 0.9
+shader_parameter/blue = 0.6
+shader_parameter/alpha = 1.0
+shader_parameter/speed = 2.0
+
+[sub_resource type="Gradient" id="Gradient_u2yqa"]
+offsets = PackedFloat32Array(0, 0.555556, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jpflh"]
+gradient = SubResource("Gradient_u2yqa")
+
+[sub_resource type="Curve" id="Curve_1o08v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pklsk"]
+curve = SubResource("Curve_1o08v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ukmu7"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 10.0
+angle_max = 356.0
+spread = 0.0
+angular_velocity_min = 1.4988e-14
+angular_velocity_max = 1.4988e-14
+orbit_velocity_min = 2.08167e-14
+orbit_velocity_max = 2.08167e-14
+radial_velocity_min = 15.0
+radial_velocity_max = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+linear_accel_min = 2.08167e-15
+linear_accel_max = 2.08167e-15
+radial_accel_min = 2.08167e-15
+radial_accel_max = 2.08167e-15
+tangential_accel_min = 2.08167e-15
+tangential_accel_max = 2.08167e-15
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_pklsk")
+color_ramp = SubResource("GradientTexture1D_jpflh")
+
+[node name="ShootingStar" instance=ExtResource("1_b0ixe")]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("2_qs410")
+
+[node name="Polygon2D" parent="." index="0"]
+modulate = Color(1, 0.945098, 0.305882, 1)
+clip_children = 2
+polygon = PackedVector2Array(-2, -4, 2, -8, 4, -1, 9, 1, 3, 4, 2, 10, -2, 6, -8, 6, -5, 1, -8, -4)
+
+[node name="BlinkingShader" type="Sprite2D" parent="Polygon2D" index="0"]
+material = SubResource("ShaderMaterial_noafu")
+scale = Vector2(0.0614262, 0.0614262)
+texture = ExtResource("3_7k6uo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="3"]
+show_behind_parent = true
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_ukmu7")
+local_coords = true
+trail_enabled = true
+trail_sections = 4

@@ -1,9 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-#TODO: 
-# # Remove take damage from star 
-
 @export var JUMP_VELOCITY = -400.0
 @export var GRAVITY : float = 1200.0
 @export var MAX_HEALTH : int = 50
@@ -79,13 +76,13 @@ func determine_grounded_position() -> void:
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print(area.get_parent().)
-	if area.get_parent() == Star:
-		"Get a point ⭐️"
-		return
-	else:
+	var hitting_object = area.get_parent()
+	if hitting_object.has_method("give_point"):
+		GameState.points += 1
+	elif hitting_object.has_method("deal_damage"):
 		take_damage(1)
-
+	
+	area.get_parent().queue_free()
 func _on_delay_timer_timeout() -> void:
 	jump_buffer = false
 

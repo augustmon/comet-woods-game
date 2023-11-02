@@ -1,6 +1,9 @@
 extends Label
 
-@onready var ground: StaticBody2D = $"../../Ground"
 
-func _process(delta: float) -> void:
-	text = str(ground.rotation_speed)
+func _ready() -> void:
+	text = str(GameState.points)
+	GameState.points_changed.connect(_on_points_changed)
+
+func _on_points_changed(points : int):
+	text = str(points)

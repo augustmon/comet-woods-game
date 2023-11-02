@@ -7,8 +7,8 @@ class_name CometSpawner
 # # 3. Implement Star scenes and points counter (Keep in GameState?)
 # # 4. Start screen
 
-const COMET = preload("res://scenes/comet.tscn")
-const STAR = preload("res://scenes/star.tscn")
+const COMET = preload("res://scenes/comet_basic.tscn")
+const STAR = preload("res://scenes/shooting_star.tscn")
 
 # Reference to ground to generate spawn coordinates
 @onready var ground: StaticBody2D = %Ground
@@ -52,7 +52,7 @@ func random_spawn_position() -> Vector2:
 
 
 func _on_spawntimer_timeout() -> void:
-	var new_object = await choose_random_celestial()
+	var new_object = choose_random_celestial()
 	spawn_celestial(new_object)
 	spawntimer.wait_time = randf_range(0.1,0.9)
 	spawntimer.start()
@@ -62,7 +62,6 @@ func choose_random_celestial() -> PackedScene:
 	var random_num = randi_range(1,10)
 	if random_num < 2:
 		return STAR
-		
 	else:
 		return COMET 
 		

@@ -1,4 +1,5 @@
 extends Node2D
+class_name SkyRotator
 
 @export var MAX_ROTATION_SPEED : float = 1
 @export var FRICTION : float = 10.0

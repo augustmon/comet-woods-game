@@ -5,29 +5,29 @@
 [ext_resource type="Texture2D" uid="uid://xblakpqm4jxy" path="res://assets/textures/foliage_green.png" id="3_sv04t"]
 [ext_resource type="Texture2D" uid="uid://cvp1xf1ramkkf" path="res://assets/textures/dark_green.png" id="3_xlsnd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4isgm"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_tci68"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4isgm"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3j4ig"]
 
 [node name="Ground" type="StaticBody2D"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_mskge")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(61, 61)
+shape = SubResource("CircleShape2D_tci68")
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(59.4021, 59.4021)
 shape = SubResource("CircleShape2D_4isgm")
 debug_color = Color(0.901961, 0.290196, 0.294118, 0.419608)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(61, 61)
-shape = SubResource("CircleShape2D_tci68")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)

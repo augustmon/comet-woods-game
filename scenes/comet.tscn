@@ -35,7 +35,7 @@ one_shot = true
 
 [node name="HitArea" parent="." instance=ExtResource("3_ox1so")]
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="SmokeTrail" type="CPUParticles2D" parent="."]
 show_behind_parent = true
 amount = 42
 lifetime = 8.0

@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://bla3a6qvvipc8"]
+
+[ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
+[ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
+[ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="3_t03ev"]
+[ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="3_xu0hk"]
+
+[sub_resource type="Curve" id="Curve_h87i3"]
+max_value = 5.0
+_data = [Vector2(0, 1.20509), 0.0, 0.0, 0, 0, Vector2(0.240876, 2.51871), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_csgr0"]
+offsets = PackedFloat32Array(0, 0.0609756, 0.788618, 0.98374)
+colors = PackedColorArray(1, 1, 1, 0, 0.953168, 0.953168, 0.953168, 1, 0.394309, 0.394309, 0.394309, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_75ahn"]
+resource_name = "burn"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireTail:scale")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0.7, 0.7), Vector2(0.6, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvc2x"]
+_data = {
+"burn": SubResource("Animation_75ahn")
+}
+
+[node name="CometBasic" instance=ExtResource("1_b3lmw")]
+script = ExtResource("2_ibxsp")
+
+[node name="Polygon2D" parent="." index="0"]
+texture = ExtResource("3_t03ev")
+
+[node name="FireTail" type="Polygon2D" parent="." index="3"]
+modulate = Color(1, 0.537255, 0, 0.447059)
+texture_filter = 1
+position = Vector2(21.7634, 0.069138)
+rotation = -1.62665
+scale = Vector2(0.6, 0.5)
+texture = ExtResource("3_t03ev")
+texture_offset = Vector2(-55, 2.08165e-12)
+texture_scale = Vector2(-6, -6)
+polygon = PackedVector2Array(-15, -20, -25, -49, -17.736, -46.7878, -15, -81, -7, -64, 5.07976, -90.8581, 12, -66, 30.5368, -80.4208, 24, -49, 45, -53, 25, -20, 36, -23, 7, -6, -3.3421, -6.37717)
+
+[node name="SmokeTrail" type="CPUParticles2D" parent="." index="4"]
+show_behind_parent = true
+amount = 42
+lifetime = 8.0
+speed_scale = 8.0
+lifetime_randomness = 0.1
+texture = ExtResource("3_xu0hk")
+particle_flag_align_y = true
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 0.01
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_h87i3")
+color_ramp = SubResource("Gradient_csgr0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_pvc2x")
+}
+autoplay = "burn"

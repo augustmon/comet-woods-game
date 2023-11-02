@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=13 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
@@ -6,18 +6,27 @@
 [ext_resource type="Texture2D" uid="uid://7vdukge0owvb" path="res://assets/textures/topaz_blue.png" id="1_u8aqu"]
 [ext_resource type="PackedScene" uid="uid://cxg4vfywlny81" path="res://scenes/player.tscn" id="2_hyots"]
 [ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="5_2u3fp"]
-[ext_resource type="PackedScene" uid="uid://chao04ufpmu6q" path="res://scenes/star.tscn" id="6_hclmw"]
+[ext_resource type="PackedScene" uid="uid://bla3a6qvvipc8" path="res://scenes/comet_basic.tscn" id="7_7d1k1"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0cb7y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emeci"]
 size = Vector2(105, 20)
 
+[sub_resource type="SystemFont" id="SystemFont_fwe6s"]
+
+[sub_resource type="SystemFont" id="SystemFont_ij5ao"]
+
+[sub_resource type="Theme" id="Theme_r3yc3"]
+default_font = SubResource("SystemFont_ij5ao")
+Label/font_sizes/font_size = 24
+Label/fonts/font = SubResource("SystemFont_fwe6s")
+
 [node name="World" type="Node2D"]
 position = Vector2(11, 10)
 scale = Vector2(0.448366, 0.448366)
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="Background" type="MeshInstance2D" parent="."]
 position = Vector2(1118.72, 1406.09)
 scale = Vector2(5932.28, 3433.86)
 mesh = SubResource("QuadMesh_0cb7y")
@@ -27,15 +36,15 @@ texture = ExtResource("1_u8aqu")
 position = Vector2(978, 1393)
 scale = Vector2(1.08232, 1.08232)
 
+[node name="CometBasic" parent="Sky" instance=ExtResource("7_7d1k1")]
+position = Vector2(-903.615, -1287.05)
+scale = Vector2(0.923941, 0.923941)
+
 [node name="CometSpawner" type="Node2D" parent="Sky"]
 position = Vector2(-996, -1087)
 script = ExtResource("5_2u3fp")
 
 [node name="Spawntimer" type="Timer" parent="Sky/CometSpawner"]
-
-[node name="Star" parent="Sky" instance=ExtResource("6_hclmw")]
-position = Vector2(299.357, -1139.22)
-scale = Vector2(0.923941, 0.923941)
 
 [node name="Ground" parent="." instance=ExtResource("1_bfr17")]
 unique_name_in_owner = true
@@ -59,6 +68,7 @@ offset_left = 17.0
 offset_top = 8.0
 offset_right = 57.0
 offset_bottom = 31.0
+theme = SubResource("Theme_r3yc3")
 script = ExtResource("1_6iqgl")
 
 [connection signal="timeout" from="Sky/CometSpawner/Spawntimer" to="Sky/CometSpawner" method="_on_spawntimer_timeout"]
