@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bla3a6qvvipc8"]
+[gd_scene load_steps=11 format=3 uid="uid://bla3a6qvvipc8"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
 [ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="3_t03ev"]
 [ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="3_xu0hk"]
+[ext_resource type="Shader" path="res://resources/fire_fade.gdshader" id="4_2y6gr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyq32"]
+shader = ExtResource("4_2y6gr")
+shader_parameter/blinkrate = 0.5
 
 [sub_resource type="Curve" id="Curve_h87i3"]
 max_value = 5.0
@@ -44,6 +49,7 @@ texture = ExtResource("3_t03ev")
 [node name="FireTail" type="Polygon2D" parent="." index="3"]
 modulate = Color(1, 0.537255, 0, 0.447059)
 texture_filter = 1
+material = SubResource("ShaderMaterial_cyq32")
 position = Vector2(21.7634, 0.069138)
 rotation = -1.62665
 scale = Vector2(0.6, 0.5)
@@ -53,6 +59,7 @@ texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(-15, -20, -25, -49, -17.736, -46.7878, -15, -81, -7, -64, 5.07976, -90.8581, 12, -66, 30.5368, -80.4208, 24, -49, 45, -53, 25, -20, 36, -23, 7, -6, -3.3421, -6.37717)
 
 [node name="SmokeTrail" type="CPUParticles2D" parent="." index="4"]
+visible = false
 show_behind_parent = true
 amount = 42
 lifetime = 8.0

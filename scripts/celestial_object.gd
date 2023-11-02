@@ -48,10 +48,16 @@ func set_life_span() -> void:
 	timer.timeout.connect(func(): queue_free()) # this is a lambda/callback function
 	timer.start()
 
+
+# if hitting ground
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	if not WAIT_TIME:
-		queue_free()
-	else:
-		grounded = true
-		await get_tree().create_timer(WAIT_TIME).timeout
-		queue_free()
+	var name_of_object = area.get_parent().name
+	if name_of_object == "Player" or name_of_object == "Ground":			
+		if not WAIT_TIME:
+			queue_free()
+		else:
+			grounded = true
+			await get_tree().create_timer(WAIT_TIME).timeout
+			queue_free()
+	else: 
+		pass

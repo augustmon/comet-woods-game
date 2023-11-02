@@ -1,4 +1,6 @@
 extends StaticBody2D
+class_name Ground
+
 
 @export var MAX_ROTATION_SPEED : float = 1
 @export var FRICTION : float = 0.1
