@@ -1,16 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=10 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
 [ext_resource type="PackedScene" uid="uid://d1w2nlcs6vsxm" path="res://scenes/sky.tscn" id="1_jyw6d"]
+[ext_resource type="Texture2D" uid="uid://7vdukge0owvb" path="res://assets/textures/topaz_blue.png" id="1_u8aqu"]
 [ext_resource type="PackedScene" uid="uid://cxg4vfywlny81" path="res://scenes/player.tscn" id="2_hyots"]
 [ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="5_2u3fp"]
 [ext_resource type="PackedScene" uid="uid://chao04ufpmu6q" path="res://scenes/star.tscn" id="6_hclmw"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0cb7y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emeci"]
 size = Vector2(105, 20)
 
 [node name="World" type="Node2D"]
+position = Vector2(11, 10)
+scale = Vector2(0.448366, 0.448366)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(1118.72, 1406.09)
+scale = Vector2(5932.28, 3433.86)
+mesh = SubResource("QuadMesh_0cb7y")
+texture = ExtResource("1_u8aqu")
 
 [node name="Sky" parent="." instance=ExtResource("1_jyw6d")]
 position = Vector2(978, 1393)

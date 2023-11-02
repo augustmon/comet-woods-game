@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dj3a8c2ruetkn"]
+
+[node name="HitArea" type="Area2D"]
+scale = Vector2(1.1, 1.1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="HitAreaCollision" type="CollisionPolygon2D" parent="."]

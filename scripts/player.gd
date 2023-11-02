@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+#TODO: 
+# # Remove take damage from star 
+
 @export var JUMP_VELOCITY = -400.0
 @export var GRAVITY : float = 1200.0
 @export var MAX_HEALTH : int = 50

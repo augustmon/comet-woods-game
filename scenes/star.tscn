@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://chao04ufpmu6q"]
+
+[ext_resource type="Script" path="res://scripts/star.gd" id="1_0nr5y"]
+[ext_resource type="Texture2D" uid="uid://crsad0ljsak6e" path="res://assets/textures/grey_brown.png" id="2_rp7ai"]
+[ext_resource type="PackedScene" uid="uid://dj3a8c2ruetkn" path="res://scenes/utility/hit_area.tscn" id="3_ai53s"]
+[ext_resource type="Shader" path="res://resources/blinking.gdshader" id="4_hiomi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g48pr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8rya"]
+shader = ExtResource("4_hiomi")
+shader_parameter/red = 0.9
+shader_parameter/green = 0.9
+shader_parameter/blue = 0.6
+shader_parameter/alpha = 1.0
+shader_parameter/speed = 2.0
+
+[node name="Star" type="StaticBody2D"]
+material = SubResource("ShaderMaterial_g48pr")
+script = ExtResource("1_0nr5y")
+SPEED = 0.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+modulate = Color(1, 0.956863, 0.466667, 1)
+clip_children = 1
+scale = Vector2(6.60404, 6.60404)
+polygon = PackedVector2Array(-2, -4, 2, -8, 4, -1, 9, 1, 3, 4, 2, 10, -2, 6, -8, 6, -5, 1, -8, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Polygon2D"]
+material = SubResource("ShaderMaterial_o8rya")
+scale = Vector2(0.0614262, 0.0614262)
+texture = ExtResource("2_rp7ai")
+
+[node name="HitArea" parent="." instance=ExtResource("3_ai53s")]
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]

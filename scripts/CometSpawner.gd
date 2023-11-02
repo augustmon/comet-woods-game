@@ -1,7 +1,14 @@
 extends Node2D
 class_name CometSpawner
-#Preload comet scene
+
+#TODO Essentials:
+# # 1. Refactor Comet class to generic "Celestials" 
+# # 2. Introduce Game Timer to increase flying speed and spawn frequency 
+# # 3. Implement Star scenes and points counter (Keep in GameState?)
+# # 4. Start screen
+
 const COMET = preload("res://scenes/comet.tscn")
+const STAR = preload("res://scenes/star.tscn")
 
 # Reference to ground to generate spawn coordinates
 @onready var ground: StaticBody2D = %Ground
@@ -21,11 +28,11 @@ func _process(delta: float) -> void:
 ## TESTING: Comet spawn on 'Enter' key
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		spawn_comet()
+		spawn_celestial(COMET)
 ##
 	
-func spawn_comet() -> void:
-	var new_comet = COMET.instantiate()
+func spawn_celestial(scene : PackedScene) -> void:
+	var new_comet = scene.instantiate()
 	new_comet.SPAWN_POINT = random_spawn_position()
 	get_parent().add_child(new_comet)
 	
@@ -45,6 +52,19 @@ func random_spawn_position() -> Vector2:
 
 
 func _on_spawntimer_timeout() -> void:
-	spawn_comet()
+	var new_object = await choose_random_celestial()
+	spawn_celestial(new_object)
 	spawntimer.wait_time = randf_range(0.1,0.9)
 	spawntimer.start()
+
+
+func choose_random_celestial() -> PackedScene:
+	var random_num = randi_range(1,10)
+	print(random_num)
+	if random_num < 2:
+		print("STARRR")
+		return STAR
+		
+	else:
+		return COMET 
+		
