@@ -14,7 +14,7 @@ var jump_buffer : bool = false
 signal health_changed
 var HEALTH : int = MAX_HEALTH:
 	get:
-		print("health was acessed %d" % HEALTH)
+		#print("health was acessed %d" % HEALTH)
 		return HEALTH
 	set(value):
 		HEALTH = value
@@ -76,12 +76,17 @@ func handle_move_animations():
 func determine_grounded_position() -> void:
 	if is_on_floor() and not grounded_position:
 		grounded_position = position.y
-		print("Player at ", grounded_position)
+
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	take_damage(10)
+	print(area.get_parent().)
+	if area.get_parent() == Star:
+		"Get a point ⭐️"
+		return
+	else:
+		take_damage(1)
 
 func _on_delay_timer_timeout() -> void:
 	jump_buffer = false
-	print("Timeout")
+
 	

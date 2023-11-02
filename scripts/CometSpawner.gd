@@ -60,9 +60,7 @@ func _on_spawntimer_timeout() -> void:
 
 func choose_random_celestial() -> PackedScene:
 	var random_num = randi_range(1,10)
-	print(random_num)
 	if random_num < 2:
-		print("STARRR")
 		return STAR
 		
 	else:
