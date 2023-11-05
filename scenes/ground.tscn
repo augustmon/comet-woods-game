@@ -39,7 +39,7 @@ texture = ExtResource("2_76awd")
 visible = false
 modulate = Color(1, 1, 1, 0.360784)
 show_behind_parent = true
-scale = Vector2(6.0487, 6.0487)
+scale = Vector2(5.01413, 5.01413)
 texture = ExtResource("3_xlsnd")
 
 [node name="SkylineSprite" type="Sprite2D" parent="."]

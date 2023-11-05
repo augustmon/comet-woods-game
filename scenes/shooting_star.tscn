@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://02r34xhsx077"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b0ixe"]
-[ext_resource type="Shader" path="res://resources/blinking.gdshader" id="2_5bn1y"]
+[ext_resource type="Shader" path="res://resources/shaders/blinking.gdshader" id="2_5bn1y"]
 [ext_resource type="Script" path="res://scripts/shooting_star.gd" id="2_qs410"]
 [ext_resource type="Texture2D" uid="uid://crsad0ljsak6e" path="res://assets/textures/grey_brown.png" id="3_7k6uo"]
 

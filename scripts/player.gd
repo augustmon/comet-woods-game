@@ -25,7 +25,7 @@ enum State {
 	STANDING,
 	JUMPING
 }
-@export var state = State
+@export var state : State = State.STANDING
 
 
 func _ready() -> void:
@@ -57,7 +57,8 @@ func apply_gravity(delta) -> void:
 
 func take_damage(damage_amount) -> void:
 	HEALTH -= damage_amount
-	animation_player.current_animation = "hurt"
+	var red_tween = create_tween()
+	red_tween.tween_property(self, "modulate", Color.RED, 0.5)
 	if HEALTH <= 0:
 		game_over()
 		
@@ -77,7 +78,7 @@ func handle_jump() -> void:
 		if Input.is_action_just_pressed("jump") or (jump_buffer and Input.is_action_pressed("jump")):
 			state = State.JUMPING
 			velocity.y = JUMP_VELOCITY
-
+			
 	elif Input.is_action_just_released("jump") and velocity.y < JUMP_VELOCITY / 2:
 			velocity.y = JUMP_VELOCITY / 2
 	
@@ -85,14 +86,17 @@ func handle_jump() -> void:
 		jump_buffer = true
 		delay_timer.start() 
 		
+	if not is_on_floor() and State.JUMPING:
+		animation_player.current_animation = "jump"			
+		
+		
 func handle_move_animations():
-	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-		state = State.RUNNING
-		if animation_player.current_animation != "hurt":
+	if is_on_floor():
+		if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
+			state = State.RUNNING
 			animation_player.current_animation = "run"
-	else: 
-		state = State.STANDING
-		if animation_player.current_animation != "hurt":
+		else: 
+			state = State.STANDING
 			animation_player.current_animation = "idle"
 
 func determine_grounded_position() -> void:

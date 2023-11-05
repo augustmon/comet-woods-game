@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
 [ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="3_t03ev"]
-[ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="3_xu0hk"]
-[ext_resource type="Shader" path="res://resources/fire_fade.gdshader" id="4_2y6gr"]
+[ext_resource type="Shader" path="res://resources/shaders/fire_fade.gdshader" id="4_2y6gr"]
+[ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="5_ktawy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cyq32"]
 shader = ExtResource("4_2y6gr")
@@ -59,17 +59,16 @@ texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(-15, -20, -25, -49, -17.736, -46.7878, -15, -81, -7, -64, 5.07976, -90.8581, 12, -66, 30.5368, -80.4208, 24, -49, 45, -53, 25, -20, 36, -23, 7, -6, -3.3421, -6.37717)
 
 [node name="SmokeTrail" type="CPUParticles2D" parent="." index="4"]
-visible = false
 show_behind_parent = true
 amount = 42
 lifetime = 8.0
 speed_scale = 8.0
 lifetime_randomness = 0.1
-texture = ExtResource("3_xu0hk")
+texture = ExtResource("5_ktawy")
 particle_flag_align_y = true
 gravity = Vector2(2.08165e-12, 2.08165e-12)
-scale_amount_min = 0.01
-scale_amount_max = 0.05
+scale_amount_min = 0.1
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_h87i3")
 color_ramp = SubResource("Gradient_csgr0")
 

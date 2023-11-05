@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djtrrsjka7po"]
 
-[ext_resource type="Shader" path="res://resources/blinking.gdshader" id="1_3bbuk"]
+[ext_resource type="Shader" path="res://resources/shaders/blinking.gdshader" id="1_3bbuk"]
 [ext_resource type="Script" path="res://scripts/shader_demo_rect.gd" id="2_4isye"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_88b4n"]

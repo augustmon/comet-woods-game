@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1w2nlcs6vsxm"]
+[gd_scene load_steps=6 format=3 uid="uid://d1w2nlcs6vsxm"]
 
 [ext_resource type="Script" path="res://scripts/sky.gd" id="1_wjmfe"]
 [ext_resource type="Texture2D" uid="uid://cyy3p5lnrulbr" path="res://assets/textures/navy_blue.png" id="2_bqh6f"]
+[ext_resource type="Resource" uid="uid://bieqqwttdy8qr" path="res://resources/sky_movement_default.tres" id="2_g7irx"]
 [ext_resource type="Texture2D" uid="uid://b2fs4wevssde8" path="res://assets/textures/stripey_blue.png" id="3_pa5pt"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_apfx5"]
 
 [node name="Sky" type="Node2D"]
 script = ExtResource("1_wjmfe")
+sky_movement_data = ExtResource("2_g7irx")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 show_behind_parent = true
@@ -15,7 +17,7 @@ scale = Vector2(3234.18, 3234.18)
 mesh = SubResource("SphereMesh_apfx5")
 texture = ExtResource("2_bqh6f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SkyTexture" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.290196)
 scale = Vector2(-5.35341, -5.35341)
 texture = ExtResource("3_pa5pt")

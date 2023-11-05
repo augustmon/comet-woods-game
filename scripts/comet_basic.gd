@@ -10,13 +10,13 @@ func _ready() -> void:
 	set_life_span()
 	SPEED = 0.2
 	
+	
 func _process(delta: float) -> void:
 	var linear_velocity = direction * SPEED
 	position += linear_velocity * delta
 	var angle = atan2(linear_velocity.y, linear_velocity.x)
 	var degrees = rad_to_deg(angle)
 	rotation_degrees = degrees
-	#fire_tail.rotate(radians)
 
 
 func deal_damage() -> void:

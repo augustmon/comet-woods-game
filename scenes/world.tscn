@@ -27,6 +27,7 @@ position = Vector2(11, 10)
 scale = Vector2(0.448366, 0.448366)
 
 [node name="Background" type="MeshInstance2D" parent="."]
+visible = false
 position = Vector2(1118.72, 1406.09)
 scale = Vector2(5932.28, 3433.86)
 mesh = SubResource("QuadMesh_0cb7y")
@@ -54,20 +55,27 @@ position = Vector2(975.402, 1379.6)
 position = Vector2(977, 667)
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(971, 778)
+position = Vector2(974.65, 787.303)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_emeci")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SpeedLabel" type="Label" parent="UI"]
-offset_left = 17.0
-offset_top = 8.0
-offset_right = 57.0
-offset_bottom = 31.0
+layout_mode = 0
+offset_left = 13.3819
+offset_top = -4.46064
+offset_right = 53.3819
+offset_bottom = 29.5394
 theme = SubResource("Theme_r3yc3")
 script = ExtResource("1_6iqgl")
 
