@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=16 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cxg4vfywlny81" path="res://scenes/player.tscn" id="2_hyots"]
 [ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="5_2u3fp"]
 [ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="7_nopxu"]
+[ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="8_ypd28"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0cb7y"]
 
@@ -53,7 +54,7 @@ script = ExtResource("5_2u3fp")
 [node name="Spawntimer" type="Timer" parent="Sky/CometSpawner"]
 
 [node name="Moon" type="Sprite2D" parent="Sky"]
-position = Vector2(-470.871, -1010.92)
+position = Vector2(3.08707, -1188.14)
 scale = Vector2(0.365666, 0.365666)
 texture = ExtResource("7_nopxu")
 
@@ -78,21 +79,37 @@ collision_mask = 0
 position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_emeci")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
+offset_left = 10.7758
+offset_top = 2.37778
+offset_right = 50.7758
+offset_bottom = 2.37778
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpeedLabel" type="Label" parent="UI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
 layout_mode = 0
-offset_left = 13.3819
-offset_top = -4.46064
-offset_right = 53.3819
-offset_bottom = 29.5394
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpeedLabel" type="Label" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
 theme = SubResource("Theme_r3yc3")
 script = ExtResource("1_6iqgl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Heart" type="Polygon2D" parent="UI/Control/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+color = Color(1, 0, 0, 1)
+texture = ExtResource("8_ypd28")
+texture_offset = Vector2(-45, -29)
+texture_scale = Vector2(-6, -6)
+polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
 
 [connection signal="timeout" from="Sky/CometSpawner/Spawntimer" to="Sky/CometSpawner" method="_on_spawntimer_timeout"]
