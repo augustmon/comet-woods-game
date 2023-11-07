@@ -12,8 +12,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qgjsu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0pen"]
-radius = 5.17261
-height = 14.4894
+radius = 3.84938
+height = 18.2459
 
 [sub_resource type="Animation" id="Animation_5c0wu"]
 length = 0.001
@@ -560,8 +560,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8swm"]
-radius = 41.0
-height = 206.08
+radius = 32.0
+height = 199.468
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlsor"]
 atlas = ExtResource("8_ehwoj")
@@ -603,6 +603,7 @@ scale = Vector2(106.007, 81.6855)
 mesh = SubResource("CapsuleMesh_qgjsu")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(1, -30)
 scale = Vector2(8.31302, 11.1806)
 shape = SubResource("CapsuleShape2D_w0pen")
 
@@ -618,7 +619,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="HitBoxCollision" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(1, -24)
+position = Vector2(2, -29)
 scale = Vector2(1, 1.02272)
 shape = SubResource("CapsuleShape2D_c8swm")
 debug_color = Color(0.898039, 0.258824, 0.462745, 0.419608)

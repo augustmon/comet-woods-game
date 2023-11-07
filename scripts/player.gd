@@ -1,21 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
-@export var JUMP_VELOCITY = -400.0
+@export var JUMP_VELOCITY : float = -400.0
 @export var GRAVITY : float = 1200.0
 @export var MAX_HEALTH : int = 3
 
 var grounded_position : float
 var jump_buffer : bool = false 
 
-signal health_changed
-var HEALTH : int = MAX_HEALTH:
-	get:
-		#print("health was acessed %d" % HEALTH)
-		return HEALTH
-	set(value):
-		HEALTH = value
-		health_changed.emit()
 
 @onready var player_sprites: Sprite2D = $PlayerSprites
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -58,10 +50,10 @@ func apply_gravity(delta) -> void:
 		velocity.y += GRAVITY * delta
 
 func take_damage(damage_amount) -> void:
-	HEALTH -= damage_amount
+	GameState.health -= damage_amount
 	var red_tween = create_tween()
 	red_tween.tween_property(self, "modulate", Color.RED, 0.5)
-	if HEALTH <= 0:
+	if GameState.health <= 0:
 		game_over()
 		
 func game_over() -> void: 

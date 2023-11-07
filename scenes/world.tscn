@@ -1,12 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=17 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
 [ext_resource type="PackedScene" uid="uid://d1w2nlcs6vsxm" path="res://scenes/sky.tscn" id="1_jyw6d"]
 [ext_resource type="Texture2D" uid="uid://7vdukge0owvb" path="res://assets/textures/topaz_blue.png" id="1_u8aqu"]
 [ext_resource type="PackedScene" uid="uid://cxg4vfywlny81" path="res://scenes/player.tscn" id="2_hyots"]
-[ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="5_2u3fp"]
+[ext_resource type="PackedScene" uid="uid://wrojdlnuprgb" path="res://scenes/comet_spawner.tscn" id="3_8520w"]
 [ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="7_nopxu"]
+[ext_resource type="Script" path="res://scenes/HeartBox.gd" id="8_3t0p4"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="8_ypd28"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0cb7y"]
@@ -47,11 +48,7 @@ texture = ExtResource("1_u8aqu")
 position = Vector2(978, 1393)
 scale = Vector2(1.08232, 1.08232)
 
-[node name="CometSpawner" type="Node2D" parent="Sky"]
-position = Vector2(-996, -1087)
-script = ExtResource("5_2u3fp")
-
-[node name="Spawntimer" type="Timer" parent="Sky/CometSpawner"]
+[node name="CometSpawner" parent="Sky" instance=ExtResource("3_8520w")]
 
 [node name="Moon" type="Sprite2D" parent="Sky"]
 position = Vector2(3.08707, -1188.14)
@@ -62,14 +59,14 @@ texture = ExtResource("7_nopxu")
 color = Color(0.47451, 0.729412, 0.92549, 1)
 energy = 0.4
 texture = SubResource("GradientTexture2D_rdsbo")
-texture_scale = 30.09
+texture_scale = 50.0
 
 [node name="Ground" parent="." instance=ExtResource("1_bfr17")]
 unique_name_in_owner = true
 position = Vector2(975.402, 1379.6)
 
 [node name="Player" parent="." instance=ExtResource("2_hyots")]
-position = Vector2(977, 667)
+position = Vector2(976.881, 695.86)
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(974.65, 787.303)
@@ -83,33 +80,73 @@ shape = SubResource("RectangleShape2D_emeci")
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 10.7758
-offset_top = 2.37778
-offset_right = 50.7758
-offset_bottom = 2.37778
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control"]
+custom_minimum_size = Vector2(120, 2.08165e-12)
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 90.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
 
-[node name="SpeedLabel" type="Label" parent="UI/Control/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MarginContainer"]
 layout_mode = 2
+
+[node name="PointLabel" type="Label" parent="UI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
 theme = SubResource("Theme_r3yc3")
+text = "0"
 script = ExtResource("1_6iqgl")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer"]
+[node name="Splitter" type="Control" parent="UI/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 24)
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Heart" type="Polygon2D" parent="UI/Control/VBoxContainer/HBoxContainer"]
+[node name="HeartBox" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("8_3t0p4")
+
+[node name="Heart" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/HeartBox"]
 texture_filter = 1
+position = Vector2(4.94306, 12.3645)
+scale = Vector2(0.7, 0.7)
+color = Color(1, 0, 0, 1)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("8_ypd28")
+texture_offset = Vector2(-45, -29)
+texture_scale = Vector2(-6, -6)
+polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
+
+[node name="Heart4" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/HeartBox"]
+texture_filter = 1
+position = Vector2(45.9431, 12.3645)
+scale = Vector2(0.7, 0.7)
 color = Color(1, 0, 0, 1)
 texture = ExtResource("8_ypd28")
 texture_offset = Vector2(-45, -29)
 texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
 
-[connection signal="timeout" from="Sky/CometSpawner/Spawntimer" to="Sky/CometSpawner" method="_on_spawntimer_timeout"]
+[node name="Heart5" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/HeartBox"]
+texture_filter = 1
+position = Vector2(85.9431, 11.3645)
+scale = Vector2(0.7, 0.7)
+color = Color(1, 0, 0, 1)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("8_ypd28")
+texture_offset = Vector2(-45, -29)
+texture_scale = Vector2(-6, -6)
+polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.15
+blend_mode = 1

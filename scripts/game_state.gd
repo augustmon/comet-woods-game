@@ -1,6 +1,9 @@
 extends Node
 class_name StateTracker
 
+
+var game_time = 0
+
 signal points_changed
 var points : int = 0:
 	get:
@@ -9,8 +12,15 @@ var points : int = 0:
 	set(amount): 
 		points = amount
 		points_changed.emit(points)
-		
-var game_time = 0
+
+signal health_changed
+var health : int = 3:
+	get:
+		#print("health was acessed %d" % health)
+		return health
+	set(value):
+		health = value
+		health_changed.emit()				
 
 
 func clear() -> void: 
