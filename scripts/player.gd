@@ -17,6 +17,7 @@ var HEALTH : int = MAX_HEALTH:
 		HEALTH = value
 		health_changed.emit()
 
+@onready var player_sprites: Sprite2D = $PlayerSprites
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var delay_timer: Timer = $DelayTimer
 
@@ -38,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	handle_move_animations()
 	move_and_slide()
 	count_seconds(delta)
+	handle_flip_direction()
 	
 func count_seconds(delta) -> void: 
 	GameState.game_time += delta
@@ -89,6 +91,12 @@ func handle_jump() -> void:
 	if not is_on_floor() and State.JUMPING:
 		animation_player.current_animation = "jump"			
 		
+
+func handle_flip_direction() -> void:
+	if Input.is_action_just_pressed("move_left"):
+		player_sprites.scale.x = 1
+	if Input.is_action_just_pressed("move_right"):
+		player_sprites.scale.x = -1
 		
 func handle_move_animations():
 	if is_on_floor():
