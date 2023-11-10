@@ -5,6 +5,7 @@
 
 [node name="CelestialObject" type="StaticBody2D"]
 z_index = 1
+z_as_relative = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3v33p")

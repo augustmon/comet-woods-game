@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@export var JUMP_VELOCITY : float = -400.0
-@export var GRAVITY : float = 1200.0
+@export var JUMP_VELOCITY : float = -500.0
+@export var GRAVITY : float = 1400.0
 @export var MAX_HEALTH : int = 3
 
 var grounded_position : float
@@ -30,20 +30,9 @@ func _physics_process(delta: float) -> void:
 	handle_jump()
 	handle_move_animations()
 	move_and_slide()
-	count_seconds(delta)
+
 	handle_flip_direction()
 	
-func count_seconds(delta) -> void: 
-	GameState.game_time += delta
-	
-
-func _format_seconds(time : float, use_milliseconds : bool = true) -> String:
-	var minutes := time / 60
-	var seconds := fmod(time, 60)
-	if not use_milliseconds:
-		return "%02d:%02d" % [minutes, seconds]
-	var milliseconds := fmod(time, 1) * 100
-	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 	
 func apply_gravity(delta) -> void:
 	if not is_on_floor():
@@ -54,18 +43,9 @@ func take_damage(damage_amount) -> void:
 	var red_tween = create_tween()
 	red_tween.tween_property(self, "modulate", Color.RED, 0.5)
 	if GameState.health <= 0:
-		game_over()
+		GameState.end_game()
 		
-func game_over() -> void: 
-	var formatted_time = _format_seconds(GameState.game_time)
-	print("You earned ", GameState.points, " points!")
-	print("You survived for: ", formatted_time)
-	# Here it should generate total score
-	# and save to user://
-	GameState.clear()
-	get_parent().modulate = Color.RED
-	await get_tree().create_timer(2.0).timeout
-	get_tree().reload_current_scene()
+
 
 func handle_jump() -> void: 
 	if is_on_floor():

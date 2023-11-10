@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=18 format=3 uid="uid://bs2nnkoboh3vq"]
 
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_4dh82"]
 [ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
 [ext_resource type="PackedScene" uid="uid://d1w2nlcs6vsxm" path="res://scenes/sky.tscn" id="1_jyw6d"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="7_nopxu"]
 [ext_resource type="Script" path="res://scenes/HeartBox.gd" id="8_3t0p4"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="8_ypd28"]
+[ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="9_l42k5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0cb7y"]
 
@@ -26,16 +28,14 @@ size = Vector2(105, 20)
 
 [sub_resource type="SystemFont" id="SystemFont_fwe6s"]
 
-[sub_resource type="SystemFont" id="SystemFont_ij5ao"]
-
 [sub_resource type="Theme" id="Theme_r3yc3"]
-default_font = SubResource("SystemFont_ij5ao")
 Label/font_sizes/font_size = 24
 Label/fonts/font = SubResource("SystemFont_fwe6s")
 
 [node name="World" type="Node2D"]
 position = Vector2(11, 10)
 scale = Vector2(0.448366, 0.448366)
+script = ExtResource("1_4dh82")
 
 [node name="Background" type="MeshInstance2D" parent="."]
 visible = false
@@ -45,6 +45,7 @@ mesh = SubResource("QuadMesh_0cb7y")
 texture = ExtResource("1_u8aqu")
 
 [node name="Sky" parent="." instance=ExtResource("1_jyw6d")]
+z_index = -1
 position = Vector2(978, 1393)
 scale = Vector2(1.08232, 1.08232)
 
@@ -63,13 +64,15 @@ texture_scale = 50.0
 
 [node name="Ground" parent="." instance=ExtResource("1_bfr17")]
 unique_name_in_owner = true
-position = Vector2(975.402, 1379.6)
+position = Vector2(978, 1393)
 
 [node name="Player" parent="." instance=ExtResource("2_hyots")]
-position = Vector2(976.881, 695.86)
+position = Vector2(981.342, 711.472)
+scale = Vector2(1, 1)
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(974.65, 787.303)
+position = Vector2(979.111, 802.915)
+scale = Vector2(1, 1)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
@@ -97,12 +100,33 @@ theme_override_constants/margin_top = 12
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MarginContainer"]
 layout_mode = 2
 
-[node name="PointLabel" type="Label" parent="UI/Control/MarginContainer/VBoxContainer"]
+[node name="PointBox" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="PointLabel" type="Label" parent="UI/Control/MarginContainer/VBoxContainer/PointBox"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 6
 theme = SubResource("Theme_r3yc3")
+theme_override_colors/font_color = Color(1, 0.854902, 0.368627, 1)
+theme_override_font_sizes/font_size = 36
 text = "0"
 script = ExtResource("1_6iqgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/MarginContainer/VBoxContainer/PointBox"]
+visible = false
+
+[node name="StarIcon" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/PointBox"]
+clip_children = 2
+position = Vector2(50, 26)
+rotation = -1.54985
+scale = Vector2(2, 2)
+color = Color(1, 1, 0.541176, 1)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("9_l42k5")
+texture_offset = Vector2(9, 14)
+texture_scale = Vector2(2, 2)
+polygon = PackedVector2Array(-2, -4, 2, -8, 4, -1, 9, 1, 3, 4, 2, 10, -2, 6, -8, 6, -5, 1, -8, -4)
 
 [node name="Splitter" type="Control" parent="UI/Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 24)

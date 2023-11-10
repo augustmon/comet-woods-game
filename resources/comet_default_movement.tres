@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CelestialObjectData" load_steps=2 format=3 uid="uid://c1cjxgysrijqt"]
+
+[ext_resource type="Script" path="res://scripts/res_recipes/celestial_object_data.gd" id="1_qf4nq"]
+
+[resource]
+script = ExtResource("1_qf4nq")
+wait_time = 2.08165e-12
+speed = 0.2
+life_span = 10.0

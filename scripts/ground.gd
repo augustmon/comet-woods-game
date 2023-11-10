@@ -22,12 +22,6 @@ func _process(delta: float) -> void:
 	rotation += rotation_speed*delta
 	
 	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("restart"):
-		var tree = get_tree()
-		tree.reload_current_scene()
-
-	
 func apply_friction() -> void: 
 	rotation_speed = move_toward(rotation_speed, 0, FRICTION)
 

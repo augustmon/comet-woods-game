@@ -13,11 +13,11 @@ sky_movement_data = ExtResource("2_g7irx")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 show_behind_parent = true
-scale = Vector2(3234.18, 3234.18)
+scale = Vector2(3500, 3500)
 mesh = SubResource("SphereMesh_apfx5")
 texture = ExtResource("2_bqh6f")
 
 [node name="SkyTexture" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.290196)
-scale = Vector2(-5.35341, -5.35341)
+scale = Vector2(6, 6)
 texture = ExtResource("3_pa5pt")

@@ -653,7 +653,7 @@ offset = Vector2(-28.2009, -18.667)
 [node name="Arm_R" type="Sprite2D" parent="PlayerSprites"]
 show_behind_parent = true
 position = Vector2(27, -70)
-rotation = 0.010472
+rotation = 1.32406
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("4_a33dk")
 centered = false
@@ -663,7 +663,7 @@ flip_h = true
 [node name="Arm_L" type="Sprite2D" parent="PlayerSprites"]
 show_behind_parent = true
 position = Vector2(-30.3193, -71.7716)
-rotation = -0.122173
+rotation = -1.29092
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("5_gr08r")
 centered = false

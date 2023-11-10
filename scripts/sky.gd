@@ -9,7 +9,8 @@ var darkness : float = 0.0
 @onready var sky_texture: Sprite2D = $SkyTexture
 
 func _ready() -> void:
-	pass
+	GameState.time_increased.connect(_on_time_increased)
+
 	
 	
 func _process(delta: float) -> void:
@@ -25,6 +26,12 @@ func _process(delta: float) -> void:
 func apply_friction(delta) -> void: 
 	current_rotation_speed = move_toward(current_rotation_speed, 0.05, sky_movement_data.friction * delta)
 
+func _on_time_increased() -> void:
+	if darkness < 0.9:
+		add_darkness()
+
 func add_darkness() -> void: 
-	darkness += 0.0001
+	var game_time_float = GameState.game_time/200000.0
+	darkness += game_time_float
+	print(darkness)
 	sky_texture.modulate = Color(0,0,0.4,darkness)
