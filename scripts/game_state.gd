@@ -52,7 +52,7 @@ signal time_increased
 func increment_time():
 	game_time += 1
 	time_increased.emit()
-	print(game_time)
+	#print(game_time)
 
 func clear() -> void: 
 	points = 0

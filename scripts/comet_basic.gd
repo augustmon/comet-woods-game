@@ -11,5 +11,5 @@ func deal_damage() -> void:
 
 func grounded_animations() -> void: 
 	smoke_trail.emitting = false
-	polygon_2d.visible = false
+	#polygon_2d.visible = false
 	

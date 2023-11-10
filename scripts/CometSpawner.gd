@@ -16,7 +16,6 @@ var ground_center : Vector2
 var chance_of_comet_burning : int = 0
 
 
-
 func _ready() -> void:
 	ground_center = Vector2.ZERO
 	spawntimer.start()
@@ -33,12 +32,15 @@ func _input(event: InputEvent) -> void:
 func spawn_celestial(scene : PackedScene) -> void:
 	var new_object = scene.instantiate()
 	new_object.SPAWN_POINT = random_spawn_position()
-	new_object.speed_multiplier = 1 + GameState.game_time/1000
+	new_object.speed_multiplier = 1 + GameState.game_time/100.0
 	
 	if new_object.name == "CometBasic":
 		determine_chance_of_comet_burning()
 		if randi_range(0,100) < chance_of_comet_burning:
-			new_object.extra_waiting_time = randf_range(1.0,5.0)
+			new_object.modulate = Color.DIM_GRAY
+			#var firetail = new_object.get_child(-1)
+			#firetail.visible = false
+			new_object.extra_waiting_time = randf_range(1.5,5.0)
 	get_parent().add_child(new_object)
 	
 func determine_chance_of_comet_burning() -> void: 

@@ -69,7 +69,7 @@ material = SubResource("ShaderMaterial_noafu")
 scale = Vector2(0.0614262, 0.0614262)
 texture = ExtResource("3_7k6uo")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="3"]
+[node name="ShiningParticles" type="GPUParticles2D" parent="." index="3"]
 show_behind_parent = true
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_ukmu7")

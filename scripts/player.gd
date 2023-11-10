@@ -8,7 +8,6 @@ class_name Player
 var grounded_position : float
 var jump_buffer : bool = false 
 
-
 @onready var player_sprites: Sprite2D = $PlayerSprites
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var delay_timer: Timer = $DelayTimer
@@ -30,7 +29,6 @@ func _physics_process(delta: float) -> void:
 	handle_jump()
 	handle_move_animations()
 	move_and_slide()
-
 	handle_flip_direction()
 	
 	

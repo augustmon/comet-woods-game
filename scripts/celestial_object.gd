@@ -65,7 +65,7 @@ func _on_hit_area_area_entered(area: Area2D) -> void:
 		queue_free()
 	# if hitting ground 
 	if name_of_object == "Ground":			
-		if not celestial_object_data.wait_time or not extra_waiting_time:
+		if not celestial_object_data.wait_time and not extra_waiting_time:
 			queue_free()
 		else:
 			grounded = true
