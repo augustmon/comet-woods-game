@@ -7,9 +7,11 @@ class_name SkyRotator
 var darkness : float = 0.0
 
 @onready var sky_texture: Sprite2D = $SkyTexture
+@onready var moon: Sprite2D = $Moon
 
 func _ready() -> void:
-	GameState.time_increased.connect(_on_time_increased)
+	#GameState.time_increased.connect(_on_time_increased)
+	pass
 
 	
 	
@@ -21,17 +23,18 @@ func _process(delta: float) -> void:
 	#
 	apply_friction(delta)
 	rotation += current_rotation_speed*delta
-	add_darkness()
+	add_darkness(Color(0.0, 0.0, 0.4, darkness))
 	
 func apply_friction(delta) -> void: 
 	current_rotation_speed = move_toward(current_rotation_speed, 0.05, sky_movement_data.friction * delta)
 
-func _on_time_increased() -> void:
-	if darkness < 0.9:
-		add_darkness()
+#func _on_time_increased() -> void:
+	#if darkness < 0.9:
+		#add_darkness(Color(0,0,0.4,darkness))
 
 #TODO: keep changing colour over time 
-func add_darkness() -> void: 
+func add_darkness(colour : Color) -> void: 
 	var game_time_float = GameState.game_time/200000.0
 	darkness += game_time_float
-	sky_texture.modulate = Color(0,0,0.4,darkness)
+	sky_texture.modulate = colour
+	moon.modulate = Color(1.0, 1.0, 1.0, darkness)
