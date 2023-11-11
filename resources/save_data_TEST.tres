@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3 uid="uid://di1oel4wl3v4t"]
+
+[ext_resource type="Script" path="res://scripts/res_recipes/save_data.gd" id="1_k0fbm"]
+
+[resource]
+script = ExtResource("1_k0fbm")
+all_scores = Array[int]([])

@@ -30,8 +30,8 @@ func _on_time_increased() -> void:
 	if darkness < 0.9:
 		add_darkness()
 
+#TODO: keep changing colour over time 
 func add_darkness() -> void: 
 	var game_time_float = GameState.game_time/200000.0
 	darkness += game_time_float
-	print(darkness)
 	sky_texture.modulate = Color(0,0,0.4,darkness)
