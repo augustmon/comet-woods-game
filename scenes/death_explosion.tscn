@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqw4wyekyohch"]
+
+[ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="1_ktj6s"]
+
+[sub_resource type="Gradient" id="Gradient_qu23u"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_850uv"]
+gradient = SubResource("Gradient_qu23u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f46h8"]
+lifetime_randomness = 0.19
+particle_flag_disable_z = true
+velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+spread = 180.0
+initial_velocity_min = 42.79
+initial_velocity_max = 106.96
+gravity = Vector3(2.08165e-12, -30, 2.08165e-12)
+linear_accel_min = 28.88
+linear_accel_max = 28.88
+scale_min = 0.2
+color = Color(1, 1, 1, 0.72549)
+color_ramp = SubResource("GradientTexture1D_850uv")
+turbulence_enabled = true
+turbulence_noise_scale = 0.658
+turbulence_noise_speed_random = 0.16
+
+[node name="DeathExplosion" type="GPUParticles2D"]
+modulate = Color(1, 1, 1, 0.776471)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_f46h8")
+texture = ExtResource("1_ktj6s")
+lifetime = 0.2
+one_shot = true
+speed_scale = 0.6

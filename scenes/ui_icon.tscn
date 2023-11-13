@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bn3d5es64vktg"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

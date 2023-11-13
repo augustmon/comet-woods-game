@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cxg4vfywlny81"]
+[gd_scene load_steps=24 format=3 uid="uid://cxg4vfywlny81"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tgngl"]
 [ext_resource type="Texture2D" uid="uid://drmljat6rly1g" path="res://assets/player_character/LEG_L.png" id="2_6fstw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c1r3kc1h57g4f" path="res://assets/player_character/ARM_L.png" id="4_a33dk"]
 [ext_resource type="Texture2D" uid="uid://8evjwfbmani8" path="res://assets/player_character/ARM_R.png" id="5_gr08r"]
 [ext_resource type="Texture2D" uid="uid://cvfsu4dp13rlb" path="res://assets/player_character/EYES.png" id="8_ehwoj"]
+[ext_resource type="Script" path="res://scenes/utility/hit_area.gd" id="9_o78rk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qgjsu"]
 
@@ -592,6 +593,10 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fn8x"]
+radius = 60.0
+height = 220.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 floor_constant_speed = true
@@ -615,7 +620,7 @@ autoplay = "jump"
 speed_scale = 1.5
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="HitBoxCollision" type="CollisionShape2D" parent="HitBox"]
@@ -688,5 +693,15 @@ animation = &"blinking"
 autoplay = "blinking"
 frame_progress = 0.815123
 
+[node name="PickupBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("9_o78rk")
+
+[node name="PickupCollision" type="CollisionShape2D" parent="PickupBox"]
+position = Vector2(4, -30)
+shape = SubResource("CapsuleShape2D_3fn8x")
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]
+[connection signal="area_entered" from="PickupBox" to="." method="_on_pickup_box_area_entered"]

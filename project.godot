@@ -61,3 +61,4 @@ die={
 
 2d_physics/layer_1="Barriers"
 2d_physics/layer_2="Impact"
+2d_physics/layer_3="Pickup"

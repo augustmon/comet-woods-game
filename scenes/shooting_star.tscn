@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://02r34xhsx077"]
+[gd_scene load_steps=13 format=3 uid="uid://02r34xhsx077"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b0ixe"]
 [ext_resource type="Shader" path="res://resources/shaders/blinking.gdshader" id="2_5bn1y"]
@@ -53,6 +53,8 @@ scale_min = 0.1
 scale_curve = SubResource("CurveTexture_pklsk")
 color_ramp = SubResource("GradientTexture1D_jpflh")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gh6t"]
+
 [node name="ShootingStar" instance=ExtResource("1_b0ixe")]
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_qs410")
@@ -76,3 +78,11 @@ process_material = SubResource("ParticleProcessMaterial_ukmu7")
 local_coords = true
 trail_enabled = true
 trail_sections = 4
+
+[node name="PickableArea" type="Area2D" parent="." index="4"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea" index="0"]
+scale = Vector2(2.21987, 2.21987)
+shape = SubResource("CircleShape2D_4gh6t")

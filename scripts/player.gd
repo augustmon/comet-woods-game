@@ -83,13 +83,15 @@ func determine_grounded_position() -> void:
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	var hitting_object = area.get_parent()
-	if hitting_object.has_method("give_point"):
-		GameState.points += 1
-	elif hitting_object.has_method("deal_damage"):
-		take_damage(1)
-	area.get_parent().queue_free()
+	#var hitting_object = area.get_parent()
+	take_damage(1)
+	print(area, " is damaging me!")
 	
+
+func _on_pickup_box_area_entered(area: Area2D) -> void:
+	GameState.points += 1
+	print(area, " picked up!")
+
 	
 func _on_delay_timer_timeout() -> void:
 	jump_buffer = false

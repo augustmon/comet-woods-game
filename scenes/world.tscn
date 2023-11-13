@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=21 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_4dh82"]
-[ext_resource type="Script" path="res://scripts/speedlabel.gd" id="1_6iqgl"]
+[ext_resource type="Script" path="res://scripts/point_label.gd" id="1_6iqgl"]
 [ext_resource type="PackedScene" uid="uid://dasfn3553wadw" path="res://scenes/ground.tscn" id="1_bfr17"]
 [ext_resource type="PackedScene" uid="uid://d1w2nlcs6vsxm" path="res://scenes/sky.tscn" id="1_jyw6d"]
 [ext_resource type="Texture2D" uid="uid://7vdukge0owvb" path="res://assets/textures/topaz_blue.png" id="1_u8aqu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/HeartBox.gd" id="8_3t0p4"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="8_ypd28"]
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="9_l42k5"]
+[ext_resource type="PackedScene" uid="uid://bn3d5es64vktg" path="res://scenes/ui_icon.tscn" id="12_ide3p"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0cb7y"]
 
@@ -27,6 +28,7 @@ fill_from = Vector2(0.5, 0.5)
 size = Vector2(105, 20)
 
 [sub_resource type="SystemFont" id="SystemFont_fwe6s"]
+subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_r3yc3"]
 Label/font_sizes/font_size = 24
@@ -113,7 +115,7 @@ shape = SubResource("RectangleShape2D_emeci")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="UI"]
+[node name="ScreenSizeAnchor" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,87 +123,114 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/Control"]
-custom_minimum_size = Vector2(120, 2.08165e-12)
-layout_mode = 1
-offset_right = 100.0
-offset_bottom = 90.0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 12
+[node name="OuterMargin" type="MarginContainer" parent="UI/ScreenSizeAnchor"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MarginContainer"]
-layout_mode = 2
-
-[node name="PointBox" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="PointLabel" type="Label" parent="UI/Control/MarginContainer/VBoxContainer/PointBox"]
+[node name="PanelContainerBG" type="PanelContainer" parent="UI/ScreenSizeAnchor/OuterMargin"]
+custom_minimum_size = Vector2(150, 120)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer"]
+layout_mode = 2
+
+[node name="PointBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PointLabel" type="Label" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
 theme = SubResource("Theme_r3yc3")
 theme_override_colors/font_color = Color(1, 0.854902, 0.368627, 1)
 theme_override_font_sizes/font_size = 36
 text = "0"
 script = ExtResource("1_6iqgl")
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/Control/MarginContainer/VBoxContainer/PointBox"]
-visible = false
+[node name="StarUI" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox" instance=ExtResource("12_ide3p")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
 
-[node name="StarIcon" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/PointBox"]
+[node name="StarIcon" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox/StarUI"]
 clip_children = 2
-position = Vector2(50, 26)
+position = Vector2(2.08165e-12, 2.08165e-12)
 rotation = -1.54985
 scale = Vector2(2, 2)
 color = Color(1, 1, 0.541176, 1)
 offset = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("9_l42k5")
-texture_offset = Vector2(9, 14)
-texture_scale = Vector2(2, 2)
+texture_offset = Vector2(2.08165e-12, 2.08165e-12)
 polygon = PackedVector2Array(-2, -4, 2, -8, 4, -1, 9, 1, 3, 4, 2, 10, -2, 6, -8, 6, -5, 1, -8, -4)
+uv = PackedVector2Array(23.5488, 16.4546, 32.8218, 7.18161, 37.4583, 23.4094, 49.0495, 28.0459, 35.14, 35.0006, 32.8218, 48.9101, 23.5488, 39.6371, 9.63925, 39.6371, 16.594, 28.0459, 9.63925, 16.4546)
 
-[node name="Splitter" type="Control" parent="UI/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 24)
+[node name="Splitter" type="Control" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 12)
+layout_mode = 2
+
+[node name="HeartBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="HeartBox" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 24)
-layout_mode = 2
-size_flags_horizontal = 8
 script = ExtResource("8_3t0p4")
 
-[node name="Heart" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/HeartBox"]
-texture_filter = 1
-position = Vector2(4.94306, 12.3645)
-scale = Vector2(0.7, 0.7)
-color = Color(1, 0, 0, 1)
-offset = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("8_ypd28")
-texture_offset = Vector2(-45, -29)
-texture_scale = Vector2(-6, -6)
-polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
+[node name="Heart" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" instance=ExtResource("12_ide3p")]
+layout_mode = 2
+size_flags_vertical = 1
 
-[node name="Heart4" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/HeartBox"]
+[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart"]
 texture_filter = 1
-position = Vector2(45.9431, 12.3645)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 color = Color(1, 0, 0, 1)
+offset = Vector2(12.8, 23.4)
 texture = ExtResource("8_ypd28")
-texture_offset = Vector2(-45, -29)
-texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
+uv = PackedVector2Array(211.398, 424.589, 97.8259, 326.16, 112.969, 189.874, 196.255, 167.159, 279.541, 227.731, 340.113, 174.731, 438.542, 174.731, 461.256, 265.588, 377.97, 394.303, 279.541, 462.446)
 
-[node name="Heart5" type="Polygon2D" parent="UI/Control/MarginContainer/VBoxContainer/HeartBox"]
+[node name="Heart2" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" instance=ExtResource("12_ide3p")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart2"]
 texture_filter = 1
-position = Vector2(85.9431, 11.3645)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 color = Color(1, 0, 0, 1)
-offset = Vector2(2.08165e-12, 2.08165e-12)
+offset = Vector2(12.8, 23.4)
 texture = ExtResource("8_ypd28")
-texture_offset = Vector2(-45, -29)
-texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
+uv = PackedVector2Array(211.398, 424.589, 97.8259, 326.16, 112.969, 189.874, 196.255, 167.159, 279.541, 227.731, 340.113, 174.731, 438.542, 174.731, 461.256, 265.588, 377.97, 394.303, 279.541, 462.446)
+
+[node name="Heart3" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" instance=ExtResource("12_ide3p")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart3"]
+texture_filter = 1
+scale = Vector2(0.6, 0.6)
+color = Color(1, 0, 0, 1)
+offset = Vector2(12.8, 23.4)
+texture = ExtResource("8_ypd28")
+polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
+uv = PackedVector2Array(211.398, 424.589, 97.8259, 326.16, 112.969, 189.874, 196.255, 167.159, 279.541, 227.731, 340.113, 174.731, 438.542, 174.731, 461.256, 265.588, 377.97, 394.303, 279.541, 462.446)
+
+[node name="ColorRect" type="ColorRect" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.192157, 0.192157, 0.192157, 0.635294)
 
 [node name="Dimness" type="DirectionalLight2D" parent="."]
 energy = 0.18
@@ -210,7 +239,6 @@ shadow_enabled = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(1, 1)
 offset = Vector2(2.08165e-12, 2.08165e-12)
 anchor_mode = 0
 position_smoothing_enabled = true
