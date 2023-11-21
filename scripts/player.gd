@@ -38,12 +38,12 @@ func apply_gravity(delta) -> void:
 
 func take_damage(damage_amount) -> void:
 	GameState.health -= damage_amount
+	print(GameState.health)
 	var red_tween = create_tween()
 	red_tween.tween_property(self, "modulate", Color.RED, 0.5)
 	if GameState.health <= 0:
 		GameState.end_game()
 		
-
 
 func handle_jump() -> void: 
 	if is_on_floor():
@@ -85,12 +85,11 @@ func determine_grounded_position() -> void:
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	#var hitting_object = area.get_parent()
 	take_damage(1)
-	print(area, " is damaging me!")
 	
 
 func _on_pickup_box_area_entered(area: Area2D) -> void:
 	GameState.points += 1
-	print(area, " picked up!")
+	#print(area, " picked up!")
 
 	
 func _on_delay_timer_timeout() -> void:

@@ -8,8 +8,8 @@ class_name CometBasic
 
 const DEATH_EXPLOSION = preload("res://scenes/death_explosion.tscn")
 
-func deal_damage() -> void:
-	GameState.health -= 1
+#func deal_damage() -> void:
+	#GameState.health -= 1
 
 func grounded_animations() -> void: 
 	smoke_trail.emitting = false
@@ -18,8 +18,6 @@ func grounded_animations() -> void:
 	
 	
 func _interact_with_player() -> void: 
-	GameState.health -= 1
-	
 	var new_explosion = DEATH_EXPLOSION.instantiate()
 	new_explosion.position = position
 	new_explosion.emitting = true

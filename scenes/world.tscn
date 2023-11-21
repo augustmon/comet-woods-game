@@ -93,6 +93,7 @@ scale = Vector2(0.365666, 0.365666)
 texture = ExtResource("7_nopxu")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sky/Moon"]
+scale = Vector2(0.487336, 0.487336)
 color = Color(0.47451, 0.729412, 0.92549, 1)
 energy = 0.4
 texture = SubResource("GradientTexture2D_rdsbo")

@@ -25,7 +25,6 @@ var health : int = 3:
 		health_changed.emit()				
 
 
-
 func save_to_file(points, file_path) -> void: 
 	var save_file : SaveData = SaveData.new()
 	print(save_file.all_scores)
@@ -50,8 +49,6 @@ func end_game() -> void:
 	print("You earned ", GameState.points, " points!")
 	print("You survived for: ", GameState.game_time)
 	# Save to resource
-	
-	clear()
 	game_over.emit()
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
@@ -81,5 +78,6 @@ func increment_time():
 	time_increased.emit()
 
 func clear() -> void: 
-	points = 0
 	game_time = 0 
+	points = 0
+	health = 3 

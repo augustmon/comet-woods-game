@@ -3,6 +3,7 @@ extends Node2D
 
 func _ready() -> void: 
 	GameState.game_over.connect(_on_game_over)
+	GameState.clear()
 	
 	
 func _on_game_over() -> void:
