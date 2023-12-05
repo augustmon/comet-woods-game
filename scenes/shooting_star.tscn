@@ -88,6 +88,9 @@ material = SubResource("ShaderMaterial_noafu")
 scale = Vector2(0.0614262, 0.0614262)
 texture = ExtResource("3_7k6uo")
 
+[node name="CollisionPolygon2D" parent="." index="1"]
+visible = false
+
 [node name="ShiningParticles" type="GPUParticles2D" parent="." index="3"]
 show_behind_parent = true
 amount = 6

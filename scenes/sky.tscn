@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" path="res://scripts/sky.gd" id="1_wjmfe"]
 [ext_resource type="Texture2D" uid="uid://cyy3p5lnrulbr" path="res://assets/textures/navy_blue.png" id="2_bqh6f"]
-[ext_resource type="Resource" uid="uid://bieqqwttdy8qr" path="res://resources/sky_movement_default.tres" id="2_g7irx"]
 [ext_resource type="Texture2D" uid="uid://b2fs4wevssde8" path="res://assets/textures/stripey_blue.png" id="3_pa5pt"]
+[ext_resource type="Script" path="res://scripts/components/RotateComponent.gd" id="5_bom34"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_apfx5"]
 
 [node name="Sky" type="Node2D"]
 script = ExtResource("1_wjmfe")
-sky_movement_data = ExtResource("2_g7irx")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="SkyBackground" type="MeshInstance2D" parent="."]
 show_behind_parent = true
 scale = Vector2(3500, 3500)
 mesh = SubResource("SphereMesh_apfx5")
@@ -21,3 +20,9 @@ texture = ExtResource("2_bqh6f")
 modulate = Color(1, 1, 1, 0.290196)
 scale = Vector2(6, 6)
 texture = ExtResource("3_pa5pt")
+
+[node name="RotateComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_bom34")
+actor = NodePath("..")
+MAX_ROTATION_SPEED = 1.3
+ACC = 5.0

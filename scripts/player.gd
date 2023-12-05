@@ -26,7 +26,7 @@ func _ready() -> void:
 	
 
 func _on_points_changed(points) -> void:
-	blink_yellow() 
+	blink_yellow(points) 
 	
 	
 func _on_health_changed(health) -> void: 
@@ -39,9 +39,10 @@ func determine_game_over(health) -> void:
 	if health <= 0:
 		GameState.end_game()
 	
-func blink_yellow() -> void: 
-	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color.YELLOW, 0.3)
+func blink_yellow(points) -> void: 
+	if points > 0: 
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", Color.YELLOW, 0.3)
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -86,7 +87,7 @@ func handle_flip_direction() -> void:
 		
 func handle_move_animations():
 	if is_on_floor():
-		if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
+		if Input.get_axis("move_left", "move_right"):
 			state = State.RUNNING
 			animation_player.current_animation = "run"
 		else: 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dasfn3553wadw"]
+[gd_scene load_steps=9 format=3 uid="uid://dasfn3553wadw"]
 
 [ext_resource type="Script" path="res://scripts/ground.gd" id="1_mskge"]
 [ext_resource type="Texture2D" uid="uid://4hpdv1bx5kdk" path="res://assets/textures/murkey_green.png" id="2_76awd"]
 [ext_resource type="Texture2D" uid="uid://xblakpqm4jxy" path="res://assets/textures/foliage_green.png" id="3_sv04t"]
 [ext_resource type="Texture2D" uid="uid://cvp1xf1ramkkf" path="res://assets/textures/dark_green.png" id="3_xlsnd"]
+[ext_resource type="Script" path="res://scripts/components/RotateComponent.gd" id="5_wmsjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tci68"]
 
@@ -45,3 +46,9 @@ visible = false
 show_behind_parent = true
 scale = Vector2(3.25859, 3.25859)
 texture = ExtResource("3_sv04t")
+
+[node name="RotateComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_wmsjm")
+actor = NodePath("..")
+MAX_ROTATION_SPEED = 1.5
+FRICTION = 15.0
