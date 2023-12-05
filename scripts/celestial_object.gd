@@ -5,6 +5,8 @@ class_name CelestialObject
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 @onready var hit_area: CollisionPolygon2D = $HitArea.get_child(0)
+@onready var ground_collision: Area2D = $GroundCollision
+@onready var ground_collision_polygon: CollisionPolygon2D = $GroundCollision/GroundCollisionPolygon
 
 @export var SPAWN_POINT : Vector2 = Vector2(600,300)
 @export var TARGET_POINT : Vector2 = Vector2(1200,600)
@@ -15,11 +17,15 @@ class_name CelestialObject
 var grounded : bool = false
 var direction : Vector2 
 
+
+
 func _ready() -> void:
 	set_collision_shapes()
 	set_position_and_direction()
 	set_size_scale() 
 	set_life_span()
+	ground_collision.area_entered.connect(_on_ground_collision_entered)
+	
 	
 	
 func _process(delta: float) -> void:
@@ -42,6 +48,7 @@ func set_position_and_direction() -> void:
 func set_collision_shapes() -> void:
 	collision_polygon_2d.polygon = polygon_2d.polygon
 	hit_area.polygon = polygon_2d.polygon	
+	ground_collision_polygon.polygon = polygon_2d.polygon
 
 
 func set_size_scale() -> void:
@@ -66,6 +73,7 @@ func grounded_animations() -> void:
 func _interact_with_player() -> void:
 	pass
 
+
 ##TODO Refactor so that two differnet functions handle this
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	# if hitting player
@@ -73,13 +81,14 @@ func _on_hit_area_area_entered(area: Area2D) -> void:
 	if name_of_object == "Player":
 		_interact_with_player()
 		queue_free()
-	# if hitting ground 
-	if name_of_object == "Ground":			
-		if not celestial_object_data.wait_time and not extra_waiting_time:
-			queue_free()
-		else:
-			grounded = true
-			await get_tree().create_timer(celestial_object_data.wait_time + extra_waiting_time).timeout
-			queue_free()
-	else: 
-		pass
+
+
+func _on_ground_collision_entered(area: Area2D) -> void:
+	if not celestial_object_data.wait_time and not extra_waiting_time:
+		queue_free()
+		
+	else:
+		grounded = true
+		await get_tree().create_timer(celestial_object_data.wait_time + extra_waiting_time).timeout
+		queue_free()
+	

@@ -64,6 +64,7 @@ die={
 
 [layer_names]
 
-2d_physics/layer_1="Barriers"
-2d_physics/layer_2="Impact"
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Player_hit"
 2d_physics/layer_3="Pickup"
+2d_physics/layer_4="Platform"

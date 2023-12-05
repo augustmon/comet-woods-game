@@ -115,7 +115,9 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_h87i3")
 color_ramp = SubResource("Gradient_csgr0")
 
-[node name="Firetail" type="Node2D" parent="." index="5"]
+[node name="GroundSmoke" parent="." index="5" instance=ExtResource("7_u0nkh")]
+
+[node name="Firetail" type="Node2D" parent="." index="6"]
 modulate = Color(1, 1, 1, 0.592157)
 material = SubResource("ShaderMaterial_j8783")
 rotation = -0.181514
@@ -151,5 +153,3 @@ libraries = {
 "": SubResource("AnimationLibrary_1y7ye")
 }
 autoplay = "burning"
-
-[node name="DeathExplosion" parent="." index="6" instance=ExtResource("7_u0nkh")]

@@ -16,10 +16,11 @@ direction = Vector3(2.08165e-12, -1, 2.08165e-12)
 spread = 180.0
 initial_velocity_min = 42.79
 initial_velocity_max = 106.96
-gravity = Vector3(2.08165e-12, -30, 2.08165e-12)
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 linear_accel_min = 28.88
 linear_accel_max = 28.88
-scale_min = 0.2
+scale_min = 0.1
+scale_max = 0.5
 color = Color(1, 1, 1, 0.72549)
 color_ramp = SubResource("GradientTexture1D_850uv")
 turbulence_enabled = true
@@ -28,6 +29,7 @@ turbulence_noise_speed_random = 0.16
 
 [node name="DeathExplosion" type="GPUParticles2D"]
 modulate = Color(1, 1, 1, 0.776471)
+z_as_relative = false
 emitting = false
 amount = 24
 process_material = SubResource("ParticleProcessMaterial_f46h8")
@@ -35,3 +37,5 @@ texture = ExtResource("1_ktj6s")
 lifetime = 0.2
 one_shot = true
 speed_scale = 0.6
+trail_enabled = true
+trail_lifetime = 0.1

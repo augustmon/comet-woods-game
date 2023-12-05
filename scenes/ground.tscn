@@ -12,7 +12,6 @@
 [sub_resource type="SphereMesh" id="SphereMesh_3j4ig"]
 
 [node name="Ground" type="StaticBody2D"]
-collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_mskge")
 
@@ -21,7 +20,6 @@ scale = Vector2(61, 61)
 shape = SubResource("CircleShape2D_tci68")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2
 collision_mask = 0
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
@@ -47,5 +45,3 @@ visible = false
 show_behind_parent = true
 scale = Vector2(3.25859, 3.25859)
 texture = ExtResource("3_sv04t")
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

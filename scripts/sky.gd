@@ -17,9 +17,9 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("move_left") and abs(current_rotation_speed) < sky_movement_data.max_rotation_speed:
-		current_rotation_speed -= sky_movement_data.acc
-	if Input.is_action_pressed("move_right") and abs(current_rotation_speed) < sky_movement_data.max_rotation_speed:
 		current_rotation_speed += sky_movement_data.acc
+	if Input.is_action_pressed("move_right") and abs(current_rotation_speed) < sky_movement_data.max_rotation_speed:
+		current_rotation_speed -= sky_movement_data.acc
 	#
 	apply_friction(delta)
 	rotation += current_rotation_speed*delta

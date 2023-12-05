@@ -10,10 +10,11 @@ func _ready() -> void:
 	
 func _on_health_changed() -> void: 
 	print(get_children())
-	for heart in get_children():
-		heart.visible = false
-	for i in range(GameState.health):
-		var heart = get_child(i)
-		print(heart)
-		heart.visible = true
+	if get_children():
+		for heart in get_children():
+			heart.visible = false
+		for i in range(GameState.health):
+			var heart = get_child(i)
+			print(heart)
+			heart.visible = true
 		

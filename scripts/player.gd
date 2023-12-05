@@ -64,9 +64,9 @@ func handle_jump() -> void:
 
 func handle_flip_direction() -> void:
 	if Input.is_action_just_pressed("move_left"):
-		player_sprites.scale.x = 1
-	if Input.is_action_just_pressed("move_right"):
 		player_sprites.scale.x = -1
+	if Input.is_action_just_pressed("move_right"):
+		player_sprites.scale.x = 1
 		
 func handle_move_animations():
 	if is_on_floor():
@@ -80,16 +80,6 @@ func handle_move_animations():
 func determine_grounded_position() -> void:
 	if is_on_floor() and not grounded_position:
 		grounded_position = position.y
-
-
-func _on_hit_box_area_entered(area: Area2D) -> void:
-	#var hitting_object = area.get_parent()
-	take_damage(1)
-	
-
-func _on_pickup_box_area_entered(area: Area2D) -> void:
-	GameState.points += 1
-	#print(area, " picked up!")
 
 	
 func _on_delay_timer_timeout() -> void:

@@ -21,4 +21,9 @@ polygon = PackedVector2Array(-11, 3, -11, -13, -2, -17, 10, -15, 18, -10, 22, 4,
 [node name="HitArea" parent="." instance=ExtResource("3_y8ed0")]
 collision_layer = 0
 
+[node name="GroundCollision" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="GroundCollisionPolygon" type="CollisionPolygon2D" parent="GroundCollision"]
+
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]

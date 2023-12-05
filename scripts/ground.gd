@@ -26,5 +26,3 @@ func apply_friction() -> void:
 	rotation_speed = move_toward(rotation_speed, 0, FRICTION)
 
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxg4vfywlny81"]
+[gd_scene load_steps=23 format=3 uid="uid://cxg4vfywlny81"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tgngl"]
 [ext_resource type="Texture2D" uid="uid://drmljat6rly1g" path="res://assets/player_character/LEG_L.png" id="2_6fstw"]
@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://8evjwfbmani8" path="res://assets/player_character/ARM_R.png" id="5_gr08r"]
 [ext_resource type="Texture2D" uid="uid://cvfsu4dp13rlb" path="res://assets/player_character/EYES.png" id="8_ehwoj"]
 [ext_resource type="Script" path="res://scenes/utility/hit_area.gd" id="9_o78rk"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_qgjsu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0pen"]
 radius = 3.84938
@@ -599,13 +597,9 @@ height = 220.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 8
 floor_constant_speed = true
 script = ExtResource("1_tgngl")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-visible = false
-scale = Vector2(106.007, 81.6855)
-mesh = SubResource("CapsuleMesh_qgjsu")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(1, -30)
@@ -621,7 +615,7 @@ speed_scale = 1.5
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="HitBoxCollision" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(2, -29)
@@ -694,8 +688,8 @@ autoplay = "blinking"
 frame_progress = 0.815123
 
 [node name="PickupBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("9_o78rk")
 
 [node name="PickupCollision" type="CollisionShape2D" parent="PickupBox"]
