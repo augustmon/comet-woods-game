@@ -21,8 +21,27 @@ enum State {
 
 
 func _ready() -> void:
-	pass
+	GameState.points_changed.connect(_on_points_changed)
+	GameState.health_changed.connect(_on_health_changed)
 	
+
+func _on_points_changed(points) -> void:
+	blink_yellow() 
+	
+	
+func _on_health_changed(health) -> void: 
+	if health < 3: 
+		blink_red()
+		determine_game_over(health) 
+	
+	
+func determine_game_over(health) -> void:
+	if health <= 0:
+		GameState.end_game()
+	
+func blink_yellow() -> void: 
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color.YELLOW, 0.3)
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -36,13 +55,10 @@ func apply_gravity(delta) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 
-func take_damage(damage_amount) -> void:
-	GameState.health -= damage_amount
-	print(GameState.health)
+func blink_red() -> void:
 	var red_tween = create_tween()
 	red_tween.tween_property(self, "modulate", Color.RED, 0.5)
-	if GameState.health <= 0:
-		GameState.end_game()
+	
 		
 
 func handle_jump() -> void: 

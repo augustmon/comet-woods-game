@@ -22,16 +22,17 @@ var health : int = 3:
 		return health
 	set(value):
 		health = value
-		health_changed.emit()				
+		health_changed.emit(health)				
 
 
 func save_to_file(points, file_path) -> void: 
-	var save_file : SaveData = SaveData.new()
-	print(save_file.all_scores)
-	print(FileAccess.open(file_path, FileAccess.READ))
-	#if not FileAccess.file_exists(file_path):
-		#save_file = SaveData.new() 
-		#save_file.all_scores.append(points)
+	var save_file
+	if not FileAccess.file_exists(file_path):
+		save_file = SaveData.new() 
+		save_file.all_scores.append(points)
+	else:
+		save_file = ResourceLoader.load(file_path)
+	ResourceSaver.save(save_file, file_path)
 		#FileAccess.open(file_path, FileAccess.WRITE)
 	#else: 
 		#save_file = FileAccess.open(file_path, FileAccess.READ)
@@ -48,7 +49,7 @@ signal game_over
 func end_game() -> void: 
 	print("You earned ", GameState.points, " points!")
 	print("You survived for: ", GameState.game_time)
-	# Save to resource
+	#save_to_file(GameState.points, save_data_path)
 	game_over.emit()
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()

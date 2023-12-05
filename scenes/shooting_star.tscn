@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://02r34xhsx077"]
+[gd_scene load_steps=16 format=3 uid="uid://02r34xhsx077"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b0ixe"]
 [ext_resource type="Shader" path="res://resources/shaders/blinking.gdshader" id="2_5bn1y"]
@@ -55,6 +55,23 @@ color_ramp = SubResource("GradientTexture1D_jpflh")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gh6t"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocwwk"]
+shader = ExtResource("2_5bn1y")
+shader_parameter/red = 1.0
+shader_parameter/green = 1.0
+shader_parameter/blue = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/speed = null
+
+[sub_resource type="Gradient" id="Gradient_rusoe"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iimjq"]
+gradient = SubResource("Gradient_rusoe")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(2.08165e-12, 0.5)
+
 [node name="ShootingStar" instance=ExtResource("1_b0ixe")]
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_qs410")
@@ -86,3 +103,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea" index="0"]
 scale = Vector2(2.21987, 2.21987)
 shape = SubResource("CircleShape2D_4gh6t")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="6"]
+material = SubResource("ShaderMaterial_ocwwk")
+energy = 0.24
+texture = SubResource("GradientTexture2D_iimjq")
