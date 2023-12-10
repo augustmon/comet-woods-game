@@ -8,9 +8,11 @@ class_name Player
 var grounded_position : float
 var jump_buffer : bool = false 
 
+
 @onready var player_sprites: Sprite2D = $PlayerSprites
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var delay_timer: Timer = $DelayTimer
+
 
 enum State {
 	RUNNING, 
@@ -43,6 +45,9 @@ func blink_yellow(points) -> void:
 	if points > 0: 
 		var tween = create_tween()
 		tween.tween_property(self, "modulate", Color.YELLOW, 0.3)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+		
+		
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)

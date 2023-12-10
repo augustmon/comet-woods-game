@@ -632,6 +632,7 @@ scale = Vector2(-1, 1)
 
 [node name="Leg_R" type="Sprite2D" parent="PlayerSprites"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(21.255, -16)
 rotation = 3.14159
 scale = Vector2(0.18, 0.154)
@@ -643,6 +644,7 @@ flip_v = true
 
 [node name="Leg_L" type="Sprite2D" parent="PlayerSprites"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-22.038, -16)
 scale = Vector2(0.15, 0.155)
 texture = ExtResource("3_leqay")
@@ -651,6 +653,7 @@ offset = Vector2(-28.2009, -18.667)
 
 [node name="Arm_R" type="Sprite2D" parent="PlayerSprites"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(27, -70)
 rotation = 1.32406
 scale = Vector2(0.16, 0.16)
@@ -661,6 +664,7 @@ flip_h = true
 
 [node name="Arm_L" type="Sprite2D" parent="PlayerSprites"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-30.3193, -71.7716)
 rotation = -1.29092
 scale = Vector2(0.16, 0.16)
@@ -670,11 +674,13 @@ offset = Vector2(-355.815, -22.9566)
 flip_h = true
 
 [node name="Body" type="Sprite2D" parent="PlayerSprites"]
+use_parent_material = true
 position = Vector2(-1.96689, -36.185)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("3_ttmod")
 
 [node name="Head" type="Sprite2D" parent="PlayerSprites"]
+use_parent_material = true
 position = Vector2(-6.08446, -91.2605)
 scale = Vector2(0.156927, 0.156927)
 texture = ExtResource("2_nur65")

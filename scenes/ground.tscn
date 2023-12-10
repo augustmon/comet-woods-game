@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dasfn3553wadw"]
+[gd_scene load_steps=10 format=3 uid="uid://dasfn3553wadw"]
 
 [ext_resource type="Script" path="res://scripts/ground.gd" id="1_mskge"]
 [ext_resource type="Texture2D" uid="uid://4hpdv1bx5kdk" path="res://assets/textures/murkey_green.png" id="2_76awd"]
 [ext_resource type="Texture2D" uid="uid://xblakpqm4jxy" path="res://assets/textures/foliage_green.png" id="3_sv04t"]
 [ext_resource type="Texture2D" uid="uid://cvp1xf1ramkkf" path="res://assets/textures/dark_green.png" id="3_xlsnd"]
 [ext_resource type="Script" path="res://scripts/components/RotateComponent.gd" id="5_wmsjm"]
+[ext_resource type="Script" path="res://scripts/components/RandomSpawnPositionComponent.gd" id="6_3nrkc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tci68"]
 
@@ -52,3 +53,6 @@ script = ExtResource("5_wmsjm")
 actor = NodePath("..")
 MAX_ROTATION_SPEED = 1.5
 FRICTION = 15.0
+
+[node name="RandomSpawnPositionComponent" type="Node" parent="."]
+script = ExtResource("6_3nrkc")

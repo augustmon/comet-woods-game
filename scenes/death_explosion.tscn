@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqw4wyekyohch"]
+[gd_scene load_steps=16 format=3 uid="uid://bqw4wyekyohch"]
 
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="1_ktj6s"]
+[ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="2_8g1b5"]
+[ext_resource type="Script" path="res://scenes/death_explosion.gd" id="2_b4exi"]
+[ext_resource type="Script" path="res://scenes/utility/hit_area.gd" id="4_r7q6l"]
 
 [sub_resource type="Gradient" id="Gradient_qu23u"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.0204778, 0.150171, 0.802048, 1)
+colors = PackedColorArray(0.690196, 0.796078, 0.964706, 0.698039, 0.501961, 0.839216, 1, 0.729412, 0.623529, 1, 0.984314, 0.709804, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_850uv"]
 gradient = SubResource("Gradient_qu23u")
@@ -16,7 +20,7 @@ direction = Vector3(2.08165e-12, -1, 2.08165e-12)
 spread = 180.0
 initial_velocity_min = 42.79
 initial_velocity_max = 106.96
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+gravity = Vector3(2.08165e-12, -100, 2.08165e-12)
 linear_accel_min = 28.88
 linear_accel_max = 28.88
 scale_min = 0.1
@@ -26,6 +30,64 @@ color_ramp = SubResource("GradientTexture1D_850uv")
 turbulence_enabled = true
 turbulence_noise_scale = 0.658
 turbulence_noise_speed_random = 0.16
+
+[sub_resource type="Curve" id="Curve_3rgut"]
+_data = [Vector2(0.0179372, 1), 0.0, 0.0, 0, 0, Vector2(0.986547, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1ahkx"]
+curve = SubResource("Curve_3rgut")
+
+[sub_resource type="Curve" id="Curve_fpnbf"]
+_data = [Vector2(0.0313901, 1), 0.0, 0.0, 0, 0, Vector2(0.955157, 0.022804), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h31cr"]
+curve = SubResource("Curve_fpnbf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jn1dg"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = -218.7
+angle_max = 364.6
+inherit_velocity_ratio = 0.258
+spread = 180.0
+flatness = 0.57
+initial_velocity_min = 50.63
+initial_velocity_max = 84.39
+angular_velocity_min = -109.59
+angular_velocity_max = 30.38
+orbit_velocity_min = 0.776
+orbit_velocity_max = 0.776
+radial_velocity_min = 9.43
+radial_velocity_max = 17.88
+gravity = Vector3(0, 98, 0)
+radial_accel_min = 14.35
+radial_accel_max = 76.8
+damping_min = 0.844
+damping_max = 6.751
+scale_min = 0.2
+alpha_curve = SubResource("CurveTexture_1ahkx")
+emission_curve = SubResource("CurveTexture_h31cr")
+hue_variation_max = 0.19
+anim_speed_min = 0.95
+anim_speed_max = 2.36
+anim_offset_max = 0.0886
+turbulence_enabled = true
+turbulence_initial_displacement_min = -0.8
+turbulence_initial_displacement_max = 4.1
+
+[sub_resource type="Gradient" id="Gradient_5dpum"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w1kt6"]
+gradient = SubResource("Gradient_5dpum")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(2.08165e-12, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxowe"]
+radius = 50.04
 
 [node name="DeathExplosion" type="GPUParticles2D"]
 modulate = Color(1, 1, 1, 0.776471)
@@ -39,3 +101,36 @@ one_shot = true
 speed_scale = 0.6
 trail_enabled = true
 trail_lifetime = 0.1
+script = ExtResource("2_b4exi")
+
+[node name="CometVanish" type="GPUParticles2D" parent="."]
+scale = Vector2(0.3, 0.3)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jn1dg")
+texture = ExtResource("2_8g1b5")
+lifetime = 0.55
+one_shot = true
+explosiveness = 0.64
+local_coords = true
+trail_enabled = true
+trail_lifetime = 1.0
+trail_sections = 14
+trail_section_subdivisions = 10
+
+[node name="HitArea" type="Area2D" parent="CometVanish"]
+scale = Vector2(3.33333, 3.33333)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_r7q6l")
+
+[node name="FireLight" type="PointLight2D" parent="CometVanish/HitArea"]
+scale = Vector2(2.71494, 2.66146)
+color = Color(1, 1, 0.654902, 1)
+energy = 0.6
+texture = SubResource("GradientTexture2D_w1kt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CometVanish/HitArea"]
+shape = SubResource("CircleShape2D_uxowe")
+
+[connection signal="area_entered" from="CometVanish/HitArea" to="." method="_on_hit_area_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bla3a6qvvipc8"]
+[gd_scene load_steps=17 format=3 uid="uid://bla3a6qvvipc8"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
 [ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
@@ -6,7 +6,34 @@
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="3_t03ev"]
 [ext_resource type="Shader" path="res://resources/shaders/fire_fade.gdshader" id="4_2y6gr"]
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="5_ktawy"]
-[ext_resource type="PackedScene" uid="uid://bqw4wyekyohch" path="res://scenes/death_explosion.tscn" id="7_u0nkh"]
+
+[sub_resource type="Gradient" id="Gradient_qu23u"]
+offsets = PackedFloat32Array(0.0204778, 0.150171, 0.802048, 1)
+colors = PackedColorArray(0.690196, 0.796078, 0.964706, 0.698039, 0.501961, 0.839216, 1, 0.729412, 0.623529, 1, 0.984314, 0.709804, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_850uv"]
+gradient = SubResource("Gradient_qu23u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_olpcj"]
+lifetime_randomness = 0.19
+particle_flag_disable_z = true
+velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+direction = Vector3(2.08165e-12, 100, 2.08165e-12)
+spread = 180.0
+initial_velocity_min = 42.79
+initial_velocity_max = 106.96
+angular_velocity_min = 74.48
+angular_velocity_max = 132.41
+gravity = Vector3(2.08165e-12, -1000, 2.08165e-12)
+linear_accel_min = 28.88
+linear_accel_max = 32.33
+scale_min = 0.1
+scale_max = 0.2
+color = Color(1, 1, 1, 0.72549)
+color_ramp = SubResource("GradientTexture1D_850uv")
+turbulence_enabled = true
+turbulence_noise_scale = 0.658
+turbulence_noise_speed_random = 0.16
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqisj"]
 radius = 14.0899
@@ -20,6 +47,25 @@ point_count = 3
 [sub_resource type="Gradient" id="Gradient_csgr0"]
 offsets = PackedFloat32Array(0, 0.0609756, 0.788618, 0.98374)
 colors = PackedColorArray(1, 1, 1, 0, 0.953168, 0.953168, 0.953168, 1, 0.394309, 0.394309, 0.394309, 1, 1, 1, 1, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f2pmr"]
+lifetime_randomness = 0.19
+particle_flag_disable_z = true
+velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+spread = 180.0
+initial_velocity_min = 42.79
+initial_velocity_max = 106.96
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+linear_accel_min = 28.88
+linear_accel_max = 28.88
+scale_min = 0.1
+scale_max = 0.5
+color = Color(1, 1, 1, 0.72549)
+color_ramp = SubResource("GradientTexture1D_850uv")
+turbulence_enabled = true
+turbulence_noise_scale = 0.658
+turbulence_noise_speed_random = 0.16
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8783"]
 shader = ExtResource("4_2y6gr")
@@ -88,7 +134,17 @@ _data = {
 script = ExtResource("2_ibxsp")
 celestial_object_data = ExtResource("3_r3br3")
 
-[node name="DamageArea" type="Area2D" parent="." index="0"]
+[node name="FlyParticles" type="GPUParticles2D" parent="." index="0"]
+visible = false
+modulate = Color(1, 1, 1, 0.776471)
+z_as_relative = false
+amount = 52
+process_material = SubResource("ParticleProcessMaterial_olpcj")
+texture = ExtResource("5_ktawy")
+trail_enabled = true
+trail_lifetime = 0.1
+
+[node name="DamageArea" type="Area2D" parent="." index="1"]
 collision_layer = 2
 collision_mask = 0
 
@@ -97,11 +153,11 @@ position = Vector2(-4, -2)
 rotation = -1.6267
 shape = SubResource("CapsuleShape2D_hqisj")
 
-[node name="Polygon2D" parent="." index="1"]
+[node name="Polygon2D" parent="." index="2"]
 texture = ExtResource("3_t03ev")
 polygon = PackedVector2Array(-11, 3, -11, -13, -2, -17, 10, -15, 16, -9, 17, 1, 10, 10, 2, 13, -6, 9)
 
-[node name="SmokeTrail" type="CPUParticles2D" parent="." index="4"]
+[node name="SmokeTrail" type="CPUParticles2D" parent="." index="5"]
 show_behind_parent = true
 amount = 42
 lifetime = 8.0
@@ -115,9 +171,20 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_h87i3")
 color_ramp = SubResource("Gradient_csgr0")
 
-[node name="GroundSmoke" parent="." index="5" instance=ExtResource("7_u0nkh")]
+[node name="GroundSmoke" type="GPUParticles2D" parent="." index="6"]
+modulate = Color(1, 1, 1, 0.776471)
+z_as_relative = false
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_f2pmr")
+texture = ExtResource("5_ktawy")
+lifetime = 0.2
+one_shot = true
+speed_scale = 0.6
+trail_enabled = true
+trail_lifetime = 0.1
 
-[node name="Firetail" type="Node2D" parent="." index="6"]
+[node name="Firetail" type="Node2D" parent="." index="7"]
 modulate = Color(1, 1, 1, 0.592157)
 material = SubResource("ShaderMaterial_j8783")
 rotation = -0.181514
@@ -153,3 +220,6 @@ libraries = {
 "": SubResource("AnimationLibrary_1y7ye")
 }
 autoplay = "burning"
+
+[node name="NoseMarker" type="Marker2D" parent="." index="9"]
+position = Vector2(17, -2)

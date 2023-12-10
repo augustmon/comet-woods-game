@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnouywtk3gy15"]
+
+[ext_resource type="Texture2D" uid="uid://dsfrrqqvi2as6" path="res://assets/deco/grass_2.png" id="1_jc22l"]
+[ext_resource type="Script" path="res://scripts/grass.gd" id="2_c88uv"]
+
+[node name="Grass" type="Sprite2D"]
+modulate = Color(0.227451, 0.615686, 0.415686, 1)
+position = Vector2(0.0403595, -4.05453)
+scale = Vector2(0.36684, 0.36684)
+texture = ExtResource("1_jc22l")
+offset = Vector2(4.03237, -49.3792)
+script = ExtResource("2_c88uv")

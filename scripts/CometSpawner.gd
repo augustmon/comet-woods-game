@@ -8,11 +8,13 @@ class_name CometSpawner
 const COMET = preload("res://scenes/comet_basic.tscn")
 const STAR = preload("res://scenes/shooting_star.tscn")
 
+@onready var random_spawn_position_component: RandomSpawnPositionComponent = $RandomSpawnPositionComponent
 @onready var spawntimer: Timer = $Spawntimer
-var ground_center : Vector2
+
 
 @export var radius : int = 1600
 
+var ground_center : Vector2
 var chance_of_comet_burning : int = 0
 
 
@@ -20,26 +22,26 @@ func _ready() -> void:
 	ground_center = Vector2.ZERO
 	spawntimer.start()
 	
+	
+	
 func _process(delta: float) -> void:
 	pass
 	
 ## TESTING: Comet spawn on 'Enter' key
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		spawn_celestial(COMET)
+		spawn_celestial(COMET, true)
 ##
 	
-func spawn_celestial(scene : PackedScene) -> void:
+func spawn_celestial(scene : PackedScene, is_burning : bool = false) -> void:
 	var new_object = scene.instantiate()
-	new_object.SPAWN_POINT = random_spawn_position()
+	new_object.SPAWN_POINT = random_spawn_position_component.random_spawn_position(ground_center, radius)
 	new_object.speed_multiplier = 1 + GameState.game_time/100.0
 	
 	if new_object.name == "CometBasic":
 		determine_chance_of_comet_burning()
-		if randi_range(0,100) < chance_of_comet_burning:
+		if randi_range(0,100) < chance_of_comet_burning or is_burning:
 			new_object.modulate = Color.DIM_GRAY
-			#var firetail = new_object.get_child(-1)
-			#firetail.visible = false
 			new_object.extra_waiting_time = randf_range(1.5,5.0)
 	get_parent().add_child(new_object)
 	

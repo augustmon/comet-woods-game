@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://wrojdlnuprgb"]
+[gd_scene load_steps=3 format=3 uid="uid://wrojdlnuprgb"]
 
 [ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="1_enpv7"]
+[ext_resource type="Script" path="res://scripts/components/RandomSpawnPositionComponent.gd" id="2_8o7se"]
 
 [node name="CometSpawner" type="Node2D"]
 position = Vector2(-996, -1087)
 script = ExtResource("1_enpv7")
 
 [node name="Spawntimer" type="Timer" parent="."]
+
+[node name="RandomSpawnPositionComponent" type="Node" parent="."]
+script = ExtResource("2_8o7se")
 
 [connection signal="timeout" from="Spawntimer" to="." method="_on_spawntimer_timeout"]
