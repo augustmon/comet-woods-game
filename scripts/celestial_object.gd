@@ -24,9 +24,9 @@ func _ready() -> void:
 	set_position_and_direction()
 	set_size_scale() 
 	set_life_span()
+	
 	ground_collision.area_entered.connect(_on_ground_collision_entered)
-	
-	
+
 	
 func _process(delta: float) -> void:
 	if not grounded:
@@ -35,8 +35,8 @@ func _process(delta: float) -> void:
 		var angle = atan2(linear_velocity.y, linear_velocity.x)
 		var degrees = rad_to_deg(angle)
 		rotation_degrees = degrees
-	if grounded:
-		grounded_animations() 
+	#if grounded:
+		#grounded_animations()
 
 
 func set_position_and_direction() -> void:
@@ -74,9 +74,8 @@ func _interact_with_player() -> void:
 	pass
 
 
-##TODO Refactor so that two differnet functions handle this
+# Hitting player
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	# if hitting player
 	var name_of_object = area.get_parent().name
 	if name_of_object == "Player":
 		_interact_with_player()
@@ -89,6 +88,7 @@ func _on_ground_collision_entered(area: Area2D) -> void:
 		
 	else:
 		grounded = true
+		grounded_animations()
 		await get_tree().create_timer(celestial_object_data.wait_time + extra_waiting_time).timeout
 		queue_free()
 	

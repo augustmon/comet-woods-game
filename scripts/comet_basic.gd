@@ -13,7 +13,6 @@ func _on_ground_collision_entered(area: Area2D) -> void:
 	if not celestial_object_data.wait_time and not extra_waiting_time:
 		create_explosion()
 		queue_free()
-		
 	else:
 		grounded = true
 		await get_tree().create_timer(celestial_object_data.wait_time + extra_waiting_time).timeout
@@ -38,7 +37,7 @@ func create_explosion() -> void:
 func grounded_animations() -> void: 
 	smoke_trail.emitting = false
 	var smoke_direction =  (TARGET_POINT - SPAWN_POINT).normalized()
-	ground_smoke.process_material.gravity = Vector3(smoke_direction.x * 1000, smoke_direction.y * 1000, 0)
+	ground_smoke.process_material.gravity = Vector3(smoke_direction.x * 10, smoke_direction.y * 10, 0)
 	ground_smoke.emitting = true
 	
 	

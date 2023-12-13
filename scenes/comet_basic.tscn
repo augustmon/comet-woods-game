@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bla3a6qvvipc8"]
+[gd_scene load_steps=19 format=3 uid="uid://bla3a6qvvipc8"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
 [ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
@@ -8,32 +8,49 @@
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="5_ktawy"]
 
 [sub_resource type="Gradient" id="Gradient_qu23u"]
-offsets = PackedFloat32Array(0.0204778, 0.150171, 0.802048, 1)
-colors = PackedColorArray(0.690196, 0.796078, 0.964706, 0.698039, 0.501961, 0.839216, 1, 0.729412, 0.623529, 1, 0.984314, 0.709804, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.0204778, 0.150171, 0.501706, 0.802048, 1)
+colors = PackedColorArray(0.690196, 0.796078, 0.964706, 0.698039, 0.501961, 0.839216, 1, 0.729412, 1, 1, 1, 0.718838, 0.623529, 1, 0.984314, 0.709804, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_850uv"]
 gradient = SubResource("Gradient_qu23u")
 
+[sub_resource type="Curve" id="Curve_cyahs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h5swp"]
+curve = SubResource("Curve_cyahs")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_olpcj"]
-lifetime_randomness = 0.19
+resource_local_to_scene = true
+lifetime_randomness = 0.11
 particle_flag_disable_z = true
+angle_min = 3.9968e-14
+angle_max = 3.9968e-14
 velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-direction = Vector3(2.08165e-12, 100, 2.08165e-12)
-spread = 180.0
-initial_velocity_min = 42.79
-initial_velocity_max = 106.96
-angular_velocity_min = 74.48
-angular_velocity_max = 132.41
-gravity = Vector3(2.08165e-12, -1000, 2.08165e-12)
+direction = Vector3(2.08165e-12, 2800, 2.08165e-12)
+spread = 0.0
+angular_velocity_min = 1.4988e-14
+angular_velocity_max = 1.4988e-14
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.1
+radial_velocity_min = 2.08167e-14
+radial_velocity_max = 2.08167e-14
+gravity = Vector3(-400, 200, 2.08165e-12)
 linear_accel_min = 28.88
-linear_accel_max = 32.33
+linear_accel_max = 35.78
 scale_min = 0.1
-scale_max = 0.2
+scale_max = 0.25
 color = Color(1, 1, 1, 0.72549)
 color_ramp = SubResource("GradientTexture1D_850uv")
 turbulence_enabled = true
-turbulence_noise_scale = 0.658
-turbulence_noise_speed_random = 0.16
+turbulence_noise_strength = 0.56
+turbulence_noise_scale = 3.556
+turbulence_noise_speed = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+turbulence_influence_over_life = SubResource("CurveTexture_h5swp")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqisj"]
 radius = 14.0899
@@ -141,6 +158,8 @@ z_as_relative = false
 amount = 52
 process_material = SubResource("ParticleProcessMaterial_olpcj")
 texture = ExtResource("5_ktawy")
+lifetime = 1.4
+local_coords = true
 trail_enabled = true
 trail_lifetime = 0.1
 
@@ -185,25 +204,25 @@ trail_enabled = true
 trail_lifetime = 0.1
 
 [node name="Firetail" type="Node2D" parent="." index="7"]
-modulate = Color(1, 1, 1, 0.592157)
+modulate = Color(1, 1, 1, 0.584314)
 material = SubResource("ShaderMaterial_j8783")
 rotation = -0.181514
 
 [node name="Fire1" type="Polygon2D" parent="Firetail" index="0"]
-modulate = Color(1, 0.537255, 0, 0.447059)
+visible = false
+modulate = Color(0, 0.745098, 0.945098, 0.447059)
 texture_filter = 1
 use_parent_material = true
 position = Vector2(21.7634, 0.069138)
 rotation = -1.62665
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.5)
 texture = ExtResource("3_t03ev")
 texture_offset = Vector2(-55, 2.08165e-12)
 texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(-15, -20, -25, -49, -17.736, -46.7878, -15, -81, -7, -64, 5.07976, -90.8581, 12, -66, 30.5368, -80.4208, 24, -49, 45, -53, 25, -20, 36, -23, 7, -6, -3.3421, -6.37717)
 
 [node name="Fire2" type="Polygon2D" parent="Firetail" index="1"]
-visible = false
-modulate = Color(1, 0.886275, 0.141176, 0.65098)
+modulate = Color(0.141176, 0.870588, 1, 0.65098)
 texture_filter = 1
 use_parent_material = true
 position = Vector2(21.7634, 0.069138)

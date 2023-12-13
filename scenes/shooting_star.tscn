@@ -73,6 +73,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(2.08165e-12, 0.5)
 
 [node name="ShootingStar" instance=ExtResource("1_b0ixe")]
+z_index = 2
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_qs410")
 celestial_object_data = ExtResource("3_bcav0")

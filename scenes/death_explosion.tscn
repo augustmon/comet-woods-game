@@ -99,6 +99,7 @@ texture = ExtResource("1_ktj6s")
 lifetime = 0.2
 one_shot = true
 speed_scale = 0.6
+local_coords = true
 trail_enabled = true
 trail_lifetime = 0.1
 script = ExtResource("2_b4exi")

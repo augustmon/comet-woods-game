@@ -36,7 +36,6 @@ mesh = SubResource("SphereMesh_3j4ig")
 texture = ExtResource("2_76awd")
 
 [node name="SkylineSprite2" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.360784)
 show_behind_parent = true
 scale = Vector2(5.01413, 5.01413)
