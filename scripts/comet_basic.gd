@@ -5,7 +5,7 @@ class_name CometBasic
 const DEATH_EXPLOSION = preload("res://scenes/death_explosion.tscn")
 @onready var smoke_trail: CPUParticles2D = $SmokeTrail
 @onready var firetail: Node2D = $Firetail
-@onready var ground_smoke: GPUParticles2D = $GroundSmoke
+@onready var ground_smoke: CPUParticles2D = $GroundSmoke
 @onready var nose_marker: Marker2D = $NoseMarker
 
 

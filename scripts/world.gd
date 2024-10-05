@@ -11,8 +11,9 @@ func _on_game_over() -> void:
 
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("restart"):
-		var tree = get_tree()
-		tree.reload_current_scene()
-	if event.is_action_pressed("die"):
-		GameState.end_game()
+	if OS.is_debug_build():
+		if event.is_action_pressed("restart"):
+			var tree = get_tree()
+			tree.reload_current_scene()
+		if event.is_action_pressed("die"):
+			GameState.end_game()

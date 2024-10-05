@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene load_steps=23 format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_4dh82"]
 [ext_resource type="Script" path="res://scripts/point_label.gd" id="1_6iqgl"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://wrojdlnuprgb" path="res://scenes/comet_spawner.tscn" id="3_8520w"]
 [ext_resource type="Texture2D" uid="uid://b177y4fuawfm8" path="res://assets/textures/milky_grey.png" id="7_nopxu"]
 [ext_resource type="Script" path="res://scenes/HeartBox.gd" id="8_3t0p4"]
+[ext_resource type="Texture2D" uid="uid://cyy3p5lnrulbr" path="res://assets/textures/navy_blue.png" id="8_roiar"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="8_ypd28"]
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="9_l42k5"]
 [ext_resource type="PackedScene" uid="uid://bn3d5es64vktg" path="res://scenes/ui_icon.tscn" id="12_ide3p"]
@@ -27,11 +28,26 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emeci"]
 size = Vector2(105, 20)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3om4"]
+texture = ExtResource("8_roiar")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(77, 101, 415, 368)
+modulate_color = Color(1, 1, 1, 0.415686)
+
 [sub_resource type="SystemFont" id="SystemFont_fwe6s"]
 subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_r3yc3"]
-Label/font_sizes/font_size = 24
+Label/colors/font_color = Color(0.839216, 0.792157, 0.415686, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 1
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 4
+Label/font_sizes/font_size = 30
 Label/fonts/font = SubResource("SystemFont_fwe6s")
 
 [sub_resource type="Animation" id="Animation_bmkqa"]
@@ -135,14 +151,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 16
 
 [node name="PanelContainerBG" type="PanelContainer" parent="UI/ScreenSizeAnchor/OuterMargin"]
-custom_minimum_size = Vector2(150, 120)
+custom_minimum_size = Vector2(150, 86)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_e3om4")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
@@ -156,11 +173,11 @@ size_flags_vertical = 3
 [node name="PointLabel" type="Label" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox"]
 layout_mode = 2
 size_flags_horizontal = 2
-size_flags_vertical = 1
+size_flags_vertical = 0
 theme = SubResource("Theme_r3yc3")
-theme_override_colors/font_color = Color(1, 0.854902, 0.368627, 1)
-theme_override_font_sizes/font_size = 36
 text = "0"
+max_lines_visible = 1
+visible_characters = 1
 script = ExtResource("1_6iqgl")
 
 [node name="StarUI" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox" instance=ExtResource("12_ide3p")]
@@ -170,9 +187,9 @@ size_flags_vertical = 4
 
 [node name="StarIcon" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox/StarUI"]
 clip_children = 2
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(-3, 0)
 rotation = -1.54985
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 color = Color(1, 1, 0.541176, 1)
 offset = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("9_l42k5")
@@ -181,7 +198,7 @@ polygon = PackedVector2Array(-2, -4, 2, -8, 4, -1, 9, 1, 3, 4, 2, 10, -2, 6, -8,
 uv = PackedVector2Array(23.5488, 16.4546, 32.8218, 7.18161, 37.4583, 23.4094, 49.0495, 28.0459, 35.14, 35.0006, 32.8218, 48.9101, 23.5488, 39.6371, 9.63925, 39.6371, 16.594, 28.0459, 9.63925, 16.4546)
 
 [node name="Splitter" type="Control" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 12)
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 
 [node name="HeartBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]

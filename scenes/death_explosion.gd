@@ -1,4 +1,4 @@
-class_name DeathExplosion extends GPUParticles2D
+class_name DeathExplosion extends CPUParticles2D
 
 @onready var collision_shape_2d: CollisionShape2D = $CometVanish/HitArea/CollisionShape2D
 @onready var hit_area: HitArea = $CometVanish/HitArea

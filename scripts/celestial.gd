@@ -47,4 +47,3 @@ func set_life_span() -> void:
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	await get_tree().create_timer(10.0)
 	queue_free()
-

@@ -2,7 +2,7 @@ extends CelestialObject
 class_name ShootingStar
 
 
-@onready var shining_particles: GPUParticles2D = $ShiningParticles
+@onready var shining_particles: CPUParticles2D = $ShiningParticles
 
 signal player_picked_up
 
@@ -20,4 +20,3 @@ func grounded_animations() -> void:
 	
 func _interact_with_player() -> void:
 	GameState.points += 1
-

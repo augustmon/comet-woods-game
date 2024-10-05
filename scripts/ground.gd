@@ -20,4 +20,3 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	rotate_component.rotate_from_input(delta)
 	
-

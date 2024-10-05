@@ -20,23 +20,12 @@ func _ready() -> void:
 
 	
 func _process(delta: float) -> void:
-	#if Input.is_action_pressed("move_left") and abs(current_rotation_speed) < sky_movement_data.max_rotation_speed:
-		#current_rotation_speed += sky_movement_data.acc
-	#if Input.is_action_pressed("move_right") and abs(current_rotation_speed) < sky_movement_data.max_rotation_speed:
-		#current_rotation_speed -= sky_movement_data.acc
-	##
-	#apply_friction(delta)
-	#rotation += current_rotation_speed*delta
 	
 	rotate_component.rotate_from_input(delta)
 
 	add_moonlight()
 	increase_colour_alpha(delta, sky_colour)
 
-
-	
-#func apply_friction(delta) -> void: 
-	#current_rotation_speed = move_toward(current_rotation_speed, 0.0, sky_movement_data.friction * delta)
 
 func increase_colour_alpha(delta : float, colour : Color) -> void: 	
 	determine_darkening()	
