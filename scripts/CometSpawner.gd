@@ -1,9 +1,6 @@
 extends Node2D
 class_name CometSpawner
 
-#TODO Essentials:
-# # 2. Introduce Game Timer to increase flying speed and spawn frequency 
-# # 4. Start 
 
 const COMET = preload("res://scenes/comet_basic.tscn")
 const STAR = preload("res://scenes/shooting_star.tscn")
@@ -29,8 +26,9 @@ func _process(delta: float) -> void:
 	
 ## TESTING: Comet spawn on 'Enter' key
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		spawn_celestial(COMET, true)
+	if OS.is_debug_build():
+		if event.is_action_pressed("ui_accept"):
+			spawn_celestial(COMET, true)
 ##
 	
 func spawn_celestial(scene : PackedScene, is_burning : bool = false) -> void:

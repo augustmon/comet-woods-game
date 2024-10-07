@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bla3a6qvvipc8"]
+[gd_scene load_steps=14 format=3 uid="uid://bla3a6qvvipc8"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
 [ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
 [ext_resource type="Resource" uid="uid://c1cjxgysrijqt" path="res://resources/comet_default_movement.tres" id="3_r3br3"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="3_t03ev"]
 [ext_resource type="Shader" path="res://resources/shaders/fire_fade.gdshader" id="4_2y6gr"]
+[ext_resource type="Texture2D" uid="uid://1o0jvbrwdv6x" path="res://assets/textures/red_brown Small.png" id="4_o2lfr"]
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="5_ktawy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqisj"]
@@ -80,7 +81,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1y7ye"]
 _data = {
-"burning": SubResource("Animation_8fvpp")
+&"burning": SubResource("Animation_8fvpp")
 }
 
 [node name="CometBasic" instance=ExtResource("1_b3lmw")]
@@ -97,7 +98,7 @@ rotation = -1.6267
 shape = SubResource("CapsuleShape2D_hqisj")
 
 [node name="Polygon2D" parent="." index="1"]
-texture = ExtResource("3_t03ev")
+texture = ExtResource("4_o2lfr")
 polygon = PackedVector2Array(-11, 3, -11, -13, -2, -17, 10, -15, 16, -9, 17, 1, 10, 10, 2, 13, -6, 9)
 
 [node name="SmokeTrail" type="CPUParticles2D" parent="." index="4"]
@@ -163,7 +164,7 @@ polygon = PackedVector2Array(-15, -20, -20.5988, -56.9956, -17.6428, -48.7848, -
 [node name="Firetail_Animation" type="AnimationPlayer" parent="Firetail" index="2"]
 root_node = NodePath("../Fire1")
 libraries = {
-"": SubResource("AnimationLibrary_1y7ye")
+&"": SubResource("AnimationLibrary_1y7ye")
 }
 autoplay = "burning"
 

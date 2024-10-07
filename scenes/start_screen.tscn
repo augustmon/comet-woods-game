@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6puvpcy1mhh3"]
+
+[ext_resource type="Texture2D" uid="uid://b2fs4wevssde8" path="res://assets/textures/stripey_blue.png" id="1_035jw"]
+[ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_lbk5a"]
+[ext_resource type="Theme" uid="uid://dt5ugdhyikbs8" path="res://assets/main.theme" id="3_7f5r0"]
+[ext_resource type="FontFile" uid="uid://jgu5ufxn3o3r" path="res://assets/fonts/Super Water.ttf" id="4_g5bro"]
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource("1_lbk5a")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(3.36915e-06, 0.44111, 0.551165, 1)
+position = Vector2(457, 514)
+scale = Vector2(2.72241, 2.72241)
+texture = ExtResource("1_035jw")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_bottom = 1.0
+offset_right = 920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.5
+offset_right = 42.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("3_7f5r0")
+theme_type_variation = &"HeaderLarge"
+theme_override_constants/line_spacing = 24
+theme_override_font_sizes/font_size = 46
+text = "Highscores"
+
+[node name="ScoresLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_7f5r0")
+text = "1. 
+2.  
+3."
+max_lines_visible = 5
+
+[node name="ButtomContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 300
+
+[node name="StartButton" type="Button" parent="Control/ButtomContainer"]
+modulate = Color(0.159, 0.13, 1, 1)
+layout_mode = 2
+theme = ExtResource("3_7f5r0")
+theme_override_fonts/font = ExtResource("4_g5bro")
+theme_override_font_sizes/font_size = 54
+text = "START"
+
+[connection signal="pressed" from="Control/ButtomContainer/StartButton" to="." method="_on_start_button_pressed"]

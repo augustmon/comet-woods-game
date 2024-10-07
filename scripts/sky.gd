@@ -1,9 +1,5 @@
 class_name SkyRotator extends Node2D
 
-
-#@export var current_rotation_speed : float = 0
-#@export var sky_movement_data : SkyMovementData 
-
 var darkness : float = 0.0
 var sky_colour : Color = Color(0.0, 0.0, 1.0, 0.0)
 var darkening : bool = true
@@ -15,7 +11,6 @@ var darkening : bool = true
 @onready var rotate_component: RotateComponent = $RotateComponent as RotateComponent
 
 func _ready() -> void:
-	#GameState.time_increased.connect(_on_time_increased)
 	pass
 
 	

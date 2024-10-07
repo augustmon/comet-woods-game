@@ -2,11 +2,14 @@ extends StaticBody2D
 class_name CelestialObject
 
 
+
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 @onready var hit_area: CollisionPolygon2D = $HitArea.get_child(0)
 @onready var ground_collision: Area2D = $GroundCollision
 @onready var ground_collision_polygon: CollisionPolygon2D = $GroundCollision/GroundCollisionPolygon
+#@onready var ground: Ground = %Ground
+@onready var ground = get_node("/root/World/Ground")
 
 @export var SPAWN_POINT : Vector2 = Vector2(600,300)
 @export var TARGET_POINT : Vector2 = Vector2(1200,600)
@@ -25,6 +28,7 @@ func _ready() -> void:
 	set_size_scale() 
 	set_life_span()
 	
+	
 	ground_collision.area_entered.connect(_on_ground_collision_entered)
 
 	
@@ -35,8 +39,6 @@ func _process(delta: float) -> void:
 		var angle = atan2(linear_velocity.y, linear_velocity.x)
 		var degrees = rad_to_deg(angle)
 		rotation_degrees = degrees
-	#if grounded:
-		#grounded_animations()
 
 
 func set_position_and_direction() -> void:
@@ -87,6 +89,7 @@ func _on_ground_collision_entered(area: Area2D) -> void:
 		queue_free()
 		
 	else:
+		call_deferred("reparent", ground)
 		grounded = true
 		grounded_animations()
 		await get_tree().create_timer(celestial_object_data.wait_time + extra_waiting_time).timeout

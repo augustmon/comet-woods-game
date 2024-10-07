@@ -8,12 +8,12 @@ const DEATH_EXPLOSION = preload("res://scenes/death_explosion.tscn")
 @onready var ground_smoke: CPUParticles2D = $GroundSmoke
 @onready var nose_marker: Marker2D = $NoseMarker
 
-
 func _on_ground_collision_entered(area: Area2D) -> void:
 	if not celestial_object_data.wait_time and not extra_waiting_time:
 		create_explosion()
 		queue_free()
 	else:
+		call_deferred("reparent", ground)
 		grounded = true
 		await get_tree().create_timer(celestial_object_data.wait_time + extra_waiting_time).timeout
 		create_explosion()
@@ -21,13 +21,18 @@ func _on_ground_collision_entered(area: Area2D) -> void:
 
 
 func _interact_with_player() -> void: 
-	GameState.health -= 1
+	if GameState.health_cooldown == false:
+		GameState.health -= 1
+		GameState.health_cooldown = true
+	else: pass
+	
 
 
 func create_explosion() -> void:
 	var new_explosion = DEATH_EXPLOSION.instantiate()
 	new_explosion.position = position
 	new_explosion.emitting = true
+	new_explosion.z_index = -1
 	new_explosion.scale = scale / 2
 	get_parent().add_child(new_explosion)
 	if new_explosion.get_child(0):

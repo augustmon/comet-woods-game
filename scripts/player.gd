@@ -55,6 +55,8 @@ func _physics_process(delta: float) -> void:
 	handle_move_animations()
 	move_and_slide()
 	handle_flip_direction()
+	if GameState.health_cooldown == true:
+		GameState.decrease_health_cooldown()
 	
 	
 func apply_gravity(delta) -> void:
