@@ -552,9 +552,9 @@ tracks/10/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xwixm"]
 _data = {
 &"RESET": SubResource("Animation_5c0wu"),
-&"jump": SubResource("Animation_nr4w7"),
 &"hurt": SubResource("Animation_7rvuh"),
 &"idle": SubResource("Animation_rtimu"),
+&"jump": SubResource("Animation_nr4w7"),
 &"run": SubResource("Animation_xulc1")
 }
 
