@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="1_ktj6s"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="2_8g1b5"]
-[ext_resource type="Script" path="res://scenes/death_explosion.gd" id="2_b4exi"]
-[ext_resource type="Script" path="res://scenes/utility/hit_area.gd" id="4_r7q6l"]
+[ext_resource type="Script" uid="uid://ilufbduxvsos" path="res://scenes/death_explosion.gd" id="2_b4exi"]
+[ext_resource type="Script" uid="uid://vns7e6vvfiph" path="res://scenes/utility/hit_area.gd" id="4_r7q6l"]
 
 [sub_resource type="Gradient" id="Gradient_r834m"]
 offsets = PackedFloat32Array(0, 0.33913, 0.591304, 0.997826)

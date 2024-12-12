@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crelxtgs6qo0p"]
 
-[ext_resource type="Script" path="res://scripts/celestial_object.gd" id="1_3v33p"]
+[ext_resource type="Script" uid="uid://dxou4ao8gqkd2" path="res://scripts/celestial_object.gd" id="1_3v33p"]
 [ext_resource type="PackedScene" uid="uid://dj3a8c2ruetkn" path="res://scenes/utility/hit_area.tscn" id="3_y8ed0"]
 
 [node name="CelestialObject" type="StaticBody2D"]

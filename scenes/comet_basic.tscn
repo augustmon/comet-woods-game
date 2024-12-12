@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://bla3a6qvvipc8"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
-[ext_resource type="Script" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
+[ext_resource type="Script" uid="uid://bauek4v1mov5e" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
 [ext_resource type="Resource" uid="uid://c1cjxgysrijqt" path="res://resources/comet_default_movement.tres" id="3_r3br3"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="3_t03ev"]
-[ext_resource type="Shader" path="res://resources/shaders/fire_fade.gdshader" id="4_2y6gr"]
+[ext_resource type="Shader" uid="uid://boxix0h0thxcy" path="res://resources/shaders/fire_fade.gdshader" id="4_2y6gr"]
 [ext_resource type="Texture2D" uid="uid://1o0jvbrwdv6x" path="res://assets/textures/red_brown Small.png" id="4_o2lfr"]
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="5_ktawy"]
 
@@ -13,7 +13,7 @@ radius = 14.0899
 height = 39.9375
 
 [sub_resource type="Curve" id="Curve_h87i3"]
-max_value = 5.0
+_limits = [0.0, 5.0, 0.0, 1.0]
 _data = [Vector2(0, 1.20509), 0.0, 0.0, 0, 0, Vector2(0.240876, 2.51871), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 

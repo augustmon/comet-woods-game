@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6puvpcy1mhh3"]
 
 [ext_resource type="Texture2D" uid="uid://b2fs4wevssde8" path="res://assets/textures/stripey_blue.png" id="1_035jw"]
-[ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_lbk5a"]
+[ext_resource type="Script" uid="uid://cvjr35y4t7g4p" path="res://scenes/start_screen.gd" id="1_lbk5a"]
 [ext_resource type="Theme" uid="uid://dt5ugdhyikbs8" path="res://assets/main.theme" id="3_7f5r0"]
 [ext_resource type="FontFile" uid="uid://jgu5ufxn3o3r" path="res://assets/fonts/Super Water.ttf" id="4_g5bro"]
 
@@ -21,6 +21,7 @@ anchor_bottom = 1.0
 offset_right = 920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

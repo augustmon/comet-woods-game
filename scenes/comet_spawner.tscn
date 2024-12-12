@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wrojdlnuprgb"]
 
-[ext_resource type="Script" path="res://scripts/CometSpawner.gd" id="1_enpv7"]
-[ext_resource type="Script" path="res://scripts/components/RandomSpawnPositionComponent.gd" id="2_8o7se"]
+[ext_resource type="Script" uid="uid://byixg71ffh2on" path="res://scripts/CometSpawner.gd" id="1_enpv7"]
+[ext_resource type="Script" uid="uid://yj4nawe0iwcg" path="res://scripts/components/RandomSpawnPositionComponent.gd" id="2_8o7se"]
 
 [node name="CometSpawner" type="Node2D"]
 position = Vector2(-996, -1087)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnouywtk3gy15"]
 
-[ext_resource type="Script" path="res://scripts/grass.gd" id="2_c88uv"]
+[ext_resource type="Script" uid="uid://cw4t012phou15" path="res://scripts/grass.gd" id="2_c88uv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5i6a4"]
 
