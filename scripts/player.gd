@@ -1,17 +1,16 @@
-extends CharacterBody2D
 class_name Player
+extends CharacterBody2D
 
 @export var JUMP_VELOCITY : float = -500.0
 @export var GRAVITY : float = 1400.0
 @export var MAX_HEALTH : int = 3
+@export var jump_input_handler : JumpInputHandler
 
 var grounded_position : float
 
 @onready var blink_component: BlinkComponent = $BlinkComponent
 @onready var player_sprites: Sprite2D = $PlayerSprites
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var delay_timer: Timer = $DelayTimer
-
 
 func _ready() -> void:
 	GameState.points_changed.connect(_on_points_changed)

@@ -8,9 +8,11 @@ func _ready() -> void:
 	print("StateSwitcher parent set to ", fsm)
 
 func _activate() -> void: 
+	set_physics_process(true)
 	print("Entering ", self.name)
 	
 func _deactivate(): 
+	set_physics_process(true)
 	print("Exiting ", self.name)
 	
 	
