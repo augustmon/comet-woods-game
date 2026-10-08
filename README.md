@@ -33,8 +33,9 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 
 ### v1.0: browser release
 - [x] Upgrade to Godot 4.7
-- [ ] Add a Web export preset and host the game (itch.io or GitHub Pages)
-- [ ] Save scores in the browser. Godot stores `user://` in IndexedDB on the web, so the current resource save may already work there.
+- [x] Add a Web export preset (single-threaded)
+- [ ] Host the game (itch.io or GitHub Pages)
+- [x] Save scores in the browser. Godot stores `user://` in IndexedDB; tested in a release web build.
 - [ ] Add a win/lose screen
 - [ ] Add sound effects: run, world rotation, comet impact, star catch
 - [ ] Add music that builds in intensity, matched to the difficulty curve
@@ -45,7 +46,7 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 - [ ] Commit `assets/` (only about 5 MB) and stop committing builds in `exports/` (about 56 MB)
 - [ ] Shrink the textures (about 400 KB each): smaller sizes, WebP/lossy compression, atlases
 - [ ] Load fonts only for the glyphs the game uses
-- [ ] Leave the debug console (`panku_console`) out of release builds
+- [x] Remove the debug console (Panku). It crashed release web builds.
 - [ ] Try a custom export template with unused engine modules turned off (3D, physics extras)
 - [ ] Profile in the browser: particle counts, shaders, lights
 
@@ -62,5 +63,4 @@ scripts/
   components/           reusable rotation and spawn-position components
   handlers/             jump input
 assets/                 art, fonts, textures
-addons/panku_console    in-game debug console (git submodule)
 ```
