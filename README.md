@@ -25,10 +25,10 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 ## Roadmap
 
 ### Now: fix the basics
-- [ ] Fix score saving. Scores are never written to disk, and the first launch crashes.
-- [ ] Remove the start-screen key that wipes all scores.
-- [ ] Fix the jump buffer and short jump.
-- [ ] Make crouch a dodge/slide. Right now crouching stops the world from rotating, which is a bug.
+- [x] Fix score saving. Scores are never written to disk, and the first launch crashes.
+- [x] Remove the start-screen key that wipes all scores.
+- [x] Fix the jump buffer and short jump.
+- [x] Make crouch a dodge/slide. Right now crouching stops the world from rotating, which is a bug.
 - [ ] Finish the player state machine refactor, then merge it.
 
 ### v1.0: browser release
