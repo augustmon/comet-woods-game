@@ -21,13 +21,11 @@ var grounded : bool = false
 var direction : Vector2 
 
 
-
 func _ready() -> void:
 	set_collision_shapes()
 	set_position_and_direction()
 	set_size_scale() 
 	set_life_span()
-	
 	
 	ground_collision.area_entered.connect(_on_ground_collision_entered)
 
@@ -78,8 +76,8 @@ func _interact_with_player() -> void:
 
 # Hitting player
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	var name_of_object = area.get_parent().name
-	if name_of_object == "Player":
+	var name_of_object = area.name
+	if name_of_object == "PlayerBox":
 		_interact_with_player()
 		queue_free()
 

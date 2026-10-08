@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cxg4vfywlny81"]
+[gd_scene load_steps=36 format=3 uid="uid://cxg4vfywlny81"]
 
 [ext_resource type="Script" uid="uid://q5yfj3qvchpk" path="res://scripts/player.gd" id="1_tgngl"]
 [ext_resource type="Texture2D" uid="uid://drmljat6rly1g" path="res://assets/player_character/LEG_L.png" id="2_6fstw"]
@@ -14,110 +14,153 @@
 [ext_resource type="Script" uid="uid://6lklj1wtibnk" path="res://scenes/state_switcher/state_jump.gd" id="11_d2wvv"]
 [ext_resource type="Script" uid="uid://bv3upryo5tcq1" path="res://scenes/state_switcher/state_run.gd" id="13_jej6c"]
 [ext_resource type="Script" uid="uid://bndftium81sg6" path="res://scenes/state_switcher/state_fall.gd" id="14_f1ej7"]
+[ext_resource type="Script" uid="uid://c28vx6bfwpokp" path="res://scenes/state_switcher/state_crouch.gd" id="15_4r5pv"]
 [ext_resource type="Script" uid="uid://bjdgmllu3tbfc" path="res://scenes/utility/blink_component.gd" id="15_oprun"]
 [ext_resource type="Script" uid="uid://dy34c1w6ed03f" path="res://scripts/handlers/jump_handler.gd" id="16_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="17_qfm1y"]
+[ext_resource type="Script" uid="uid://dgb3wo5yo6hp6" path="res://scenes/skid_particles.gd" id="18_fulsm"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0pen"]
-radius = 3.84938
-height = 18.2459
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5pv"]
+size = Vector2(69.2715, 200.003)
 
 [sub_resource type="Animation" id="Animation_5c0wu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprites/Arm_R:position")
+tracks/0/path = NodePath("PlayerSprites/Body/Arm_R:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(27, -70)]
+"values": [1.32406]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprites/Arm_R:rotation")
+tracks/1/path = NodePath("PlayerSprites/Body/Arm_L:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.32406]
+"values": [-1.29092]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerSprites/Arm_L:position")
+tracks/2/path = NodePath("PlayerSprites/Body/Leg_L:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-30.3193, -71.7716)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprites/Arm_L:rotation")
+tracks/3/path = NodePath("PlayerSprites/Body/Leg_R:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-1.29092]
+"values": [3.14159]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprites/Leg_L:rotation")
+tracks/4/path = NodePath("PlayerSprites/Head:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(-6.084, -164)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprites/Leg_R:rotation")
+tracks/5/path = NodePath("PlayerSprites/Body:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [3.14159]
+"values": [Vector2(0.16, 0.16)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprites/Leg_L:position")
+tracks/6/path = NodePath(".:skew")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-22.038, -16)]
+"values": [0.0]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprites/Leg_R:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+
+[sub_resource type="Animation" id="Animation_4r5pv"]
+resource_name = "crouch"
+length = 0.250008
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprites/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-6.084, -164), Vector2(-6.084, -110)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprites/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.16, 0.16), Vector2(0.16, 0.1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprites/Body/Leg_R:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(21.255, -16)]
+"values": [3.14159]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprites/Body/Leg_L:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_f1ej7"]
@@ -138,154 +181,57 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("PlayerSprites/Body/Arm_R:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprites/Arm_R:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(27, -70)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprites/Arm_R:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4998, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.010472, -1.07338, -1.07338]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprites/Arm_L:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-30.3193, -71.7716)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprites/Arm_L:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprites/Body/Arm_L:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4998, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-0.122173, 0.839503, 0.839503]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprites/Leg_L:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprites/Body/Leg_L:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.9996),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-22.038, -16)]
+"values": [1.32645, 1.32645, 0.0]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerSprites/Leg_L:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.2499, 0.4998, 0.9996),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerSprites/Body/Leg_R:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.9996),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.436332, 1.32645, 0.0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerSprites/Leg_R:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21.255, -16)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerSprites/Leg_R:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.2499, 0.4998, 0.9996),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [3.14159, 2.64243, 2.0944, 3.14159]
-}
-
-[sub_resource type="Animation" id="Animation_7rvuh"]
-resource_name = "hurt"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.729412, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1)]
+"values": [2.0944, 2.0944, 3.14159]
 }
 
 [sub_resource type="Animation" id="Animation_rtimu"]
 resource_name = "idle"
-loop_mode = 1
+length = 2.00001
+loop_mode = 2
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -293,130 +239,82 @@ tracks/0/path = NodePath(".:skew")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0122173]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("PlayerSprites/Body/Arm_R:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [1.32406]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
+tracks/2/path = NodePath("PlayerSprites/Body/Arm_L:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [-1.29092]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprites/Arm_R:position")
+tracks/3/path = NodePath("PlayerSprites/Body/Leg_L:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(27, -70)]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprites/Arm_R:rotation")
+tracks/4/path = NodePath("PlayerSprites/Body/Leg_R:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.32406]
+"values": [3.14159]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprites/Arm_L:position")
+tracks/5/path = NodePath("PlayerSprites/Head:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-30.3193, -71.7716)]
+"values": [Vector2(-6.084, -164)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprites/Arm_L:rotation")
+tracks/6/path = NodePath("PlayerSprites/Body:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-1.29092]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprites/Leg_L:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerSprites/Leg_R:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.14159]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerSprites/Leg_L:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-22.038, -16)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerSprites/Leg_R:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21.255, -16)]
+"values": [Vector2(0.16, 0.16)]
 }
 
 [sub_resource type="Animation" id="Animation_nr4w7"]
@@ -437,122 +335,50 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("PlayerSprites/Body/Arm_R:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4998, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [0.010472, 0.438078, 0.010472]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
+tracks/2/path = NodePath("PlayerSprites/Body/Arm_L:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4998, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [-0.122173, -0.436332, -0.122173]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprites/Arm_R:position")
+tracks/3/path = NodePath("PlayerSprites/Body/Leg_L:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2499, 0.4998),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(27, -70)]
+"values": [0.0, 0.436332, 1.32645]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprites/Arm_R:rotation")
+tracks/4/path = NodePath("PlayerSprites/Body/Leg_R:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4998),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2499, 0.4998),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.010472, 0.438078]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprites/Arm_L:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-30.3193, -71.7716)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprites/Arm_L:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.4998),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.122173, -0.436332]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprites/Leg_L:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-22.038, -16)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerSprites/Leg_L:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.2499, 0.4998, 0.9996),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.436332, 1.32645, 0.0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerSprites/Leg_R:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21.255, -16)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerSprites/Leg_R:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.2499, 0.4998, 0.9996),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [3.14159, 2.64243, 2.0944, 3.14159]
+"values": [3.14159, 2.64243, 2.0944]
 }
 
 [sub_resource type="Animation" id="Animation_xulc1"]
@@ -574,137 +400,69 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("PlayerSprites/Body/Arm_R:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprites/Arm_R:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(27, -70)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprites/Arm_R:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4998),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.010472, 0.438078]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprites/Arm_L:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-30.3193, -71.7716)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprites/Arm_L:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprites/Body/Arm_L:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4998),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.122173, -0.436332]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprites/Leg_L:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprites/Body/Leg_L:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2499, 0.4998, 0.7497, 0.9996),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.436332, 0.0576245, -0.610865, 0.0]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerSprites/Leg_R:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerSprites/Body/Leg_R:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.2499, 0.4998, 0.7497, 0.9996),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [3.14159, 2.64243, 3.07003, 3.80482, 3.14159]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerSprites/Leg_L:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-22.038, -16)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerSprites/Leg_R:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21.255, -16)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xwixm"]
 _data = {
 &"RESET": SubResource("Animation_5c0wu"),
+&"crouch": SubResource("Animation_4r5pv"),
 &"fall": SubResource("Animation_f1ej7"),
-&"hurt": SubResource("Animation_7rvuh"),
 &"idle": SubResource("Animation_rtimu"),
 &"jump": SubResource("Animation_nr4w7"),
 &"run": SubResource("Animation_xulc1")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8swm"]
-radius = 32.0
-height = 199.468
+radius = 237.5
+height = 1237.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fn8x"]
+radius = 60.0
+height = 220.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlsor"]
 atlas = ExtResource("8_ehwoj")
@@ -735,11 +493,14 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fn8x"]
-radius = 60.0
-height = 220.0
+[sub_resource type="Gradient" id="Gradient_a8ls1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_qfm1y"]
+colors = PackedColorArray(0.610487, 0.373581, 0.287548, 1, 1, 1, 1, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jump_input_handler")]
+position = Vector2(1, -67)
 collision_layer = 0
 collision_mask = 8
 floor_constant_speed = true
@@ -747,9 +508,8 @@ script = ExtResource("1_tgngl")
 jump_input_handler = NodePath("JumpInputHandler")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(1, -30)
-scale = Vector2(8.31302, 11.1806)
-shape = SubResource("CapsuleShape2D_w0pen")
+position = Vector2(-0.563711, -34.0005)
+shape = SubResource("RectangleShape2D_4r5pv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -757,72 +517,90 @@ libraries = {
 }
 autoplay = "jump"
 speed_scale = 1.5
-
-[node name="HitBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-
-[node name="HitBoxCollision" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(2, -29)
-scale = Vector2(1, 1.02272)
-shape = SubResource("CapsuleShape2D_c8swm")
-debug_color = Color(0.898039, 0.258824, 0.462745, 0.419608)
+blend_times = [&"fall", &"idle", 0.5, &"fall", &"jump", 0.2, &"fall", &"run", 0.2, &"idle", &"crouch", 0.1, &"idle", &"jump", 0.2, &"idle", &"run", 0.1, &"jump", &"fall", 0.5, &"run", &"idle", 0.5, &"run", &"jump", 0.2]
 
 [node name="PlayerSprites" type="Sprite2D" parent="."]
-scale = Vector2(-1, 1)
-
-[node name="Leg_R" type="Sprite2D" parent="PlayerSprites"]
-show_behind_parent = true
-use_parent_material = true
-position = Vector2(21.255, -16)
-rotation = 3.14159
-scale = Vector2(0.18, 0.154)
-texture = ExtResource("2_6fstw")
-centered = false
-offset = Vector2(-22.9121, -572.309)
-flip_h = true
-flip_v = true
-
-[node name="Leg_L" type="Sprite2D" parent="PlayerSprites"]
-show_behind_parent = true
-use_parent_material = true
-position = Vector2(-22.038, -16)
-scale = Vector2(0.15, 0.155)
-texture = ExtResource("3_leqay")
-centered = false
-offset = Vector2(-28.2009, -18.667)
-
-[node name="Arm_R" type="Sprite2D" parent="PlayerSprites"]
-show_behind_parent = true
-use_parent_material = true
-position = Vector2(27, -70)
-rotation = 1.32406
-scale = Vector2(0.16, 0.16)
-texture = ExtResource("4_a33dk")
-centered = false
-offset = Vector2(-4.13036, -26.4311)
-flip_h = true
-
-[node name="Arm_L" type="Sprite2D" parent="PlayerSprites"]
-show_behind_parent = true
-use_parent_material = true
-position = Vector2(-30.3193, -71.7716)
-rotation = -1.29092
-scale = Vector2(0.16, 0.16)
-texture = ExtResource("5_gr08r")
-centered = false
-offset = Vector2(-355.815, -22.9566)
-flip_h = true
+position = Vector2(1, 68)
+offset = Vector2(-1, -68)
 
 [node name="Body" type="Sprite2D" parent="PlayerSprites"]
 use_parent_material = true
-position = Vector2(-1.96689, -36.185)
+position = Vector2(-3, -2)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("3_ttmod")
+offset = Vector2(11.3552, -679.811)
+
+[node name="Leg_R" type="Sprite2D" parent="PlayerSprites/Body"]
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(125, -531.25)
+rotation = 3.14159
+scale = Vector2(1.125, 0.9625)
+texture = ExtResource("2_6fstw")
+centered = false
+offset = Vector2(-63.363, -563.389)
+flip_h = true
+flip_v = true
+
+[node name="Leg_L" type="Sprite2D" parent="PlayerSprites/Body"]
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(-93.75, -506.25)
+scale = Vector2(0.9375, 0.96875)
+texture = ExtResource("3_leqay")
+centered = false
+offset = Vector2(-28.6827, -52.8246)
+
+[node name="Arm_R" type="Sprite2D" parent="PlayerSprites/Body"]
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(162.5, -850)
+rotation = 1.32406
+scale = Vector2(1, 1)
+texture = ExtResource("4_a33dk")
+centered = false
+offset = Vector2(-29.3812, -47.2558)
+flip_h = true
+
+[node name="Arm_L" type="Sprite2D" parent="PlayerSprites/Body"]
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(-131.25, -831.25)
+rotation = -1.29092
+scale = Vector2(1, 1)
+texture = ExtResource("5_gr08r")
+centered = false
+offset = Vector2(-345.993, -54.6068)
+flip_h = true
+
+[node name="PlayerBox" type="Area2D" parent="PlayerSprites/Body"]
+position = Vector2(12.5, -412.5)
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
+
+[node name="HitBoxCollision" type="CollisionShape2D" parent="PlayerSprites/Body/PlayerBox"]
+position = Vector2(-12.5, -193.75)
+shape = SubResource("CapsuleShape2D_c8swm")
+debug_color = Color(0.898039, 0.258824, 0.462745, 0.419608)
+
+[node name="PickupBox" type="Area2D" parent="PlayerSprites/Body"]
+visible = false
+modulate = Color(1, 1, 1, 0.145098)
+z_as_relative = false
+position = Vector2(12.5, -412.5)
+scale = Vector2(6.25, 6.25)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("9_o78rk")
+
+[node name="PickupCollision" type="CollisionShape2D" parent="PlayerSprites/Body/PickupBox"]
+position = Vector2(4, -30)
+shape = SubResource("CapsuleShape2D_3fn8x")
 
 [node name="Head" type="Sprite2D" parent="PlayerSprites"]
 use_parent_material = true
-position = Vector2(-6.08446, -91.2605)
+position = Vector2(-6.084, -164)
 scale = Vector2(0.156927, 0.156927)
 texture = ExtResource("2_nur65")
 
@@ -834,20 +612,11 @@ animation = &"blinking"
 autoplay = "blinking"
 frame_progress = 0.815123
 
-[node name="PickupBox" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("9_o78rk")
-
-[node name="PickupCollision" type="CollisionShape2D" parent="PickupBox"]
-position = Vector2(4, -30)
-shape = SubResource("CapsuleShape2D_3fn8x")
-
 [node name="StateSwitcher" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("10_y4r1p")
 current_state = NodePath("IdleState")
 
-[node name="State_Jump" type="Node" parent="StateSwitcher"]
+[node name="JumpState" type="Node" parent="StateSwitcher"]
 script = ExtResource("11_d2wvv")
 
 [node name="IdleState" type="Node" parent="StateSwitcher"]
@@ -862,6 +631,10 @@ metadata/_custom_type_script = ExtResource("13_jej6c")
 script = ExtResource("14_f1ej7")
 metadata/_custom_type_script = ExtResource("14_f1ej7")
 
+[node name="CrouchState" type="Node" parent="StateSwitcher"]
+script = ExtResource("15_4r5pv")
+metadata/_custom_type_script = ExtResource("15_4r5pv")
+
 [node name="BlinkComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("15_oprun")
 entity = NodePath("../PlayerSprites")
@@ -875,6 +648,28 @@ player = NodePath("..")
 wait_time = 0.1
 one_shot = true
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="area_entered" from="PickupBox" to="." method="_on_pickup_box_area_entered"]
-[connection signal="timeout" from="JumpInputHandler/JumpBufferTimer" to="." method="_on_delay_timer_timeout"]
+[node name="SkidParticles" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 67)
+emitting = false
+lifetime = 1.59
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 1.0
+texture = ExtResource("17_qfm1y")
+spread = 10.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 100.0
+initial_velocity_max = 134.41
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+color = Color(1, 1, 1, 0.6)
+color_ramp = SubResource("Gradient_a8ls1")
+color_initial_ramp = SubResource("Gradient_qfm1y")
+script = ExtResource("18_fulsm")
+
+[connection signal="area_entered" from="PlayerSprites/Body/PlayerBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="PlayerSprites/Body/PickupBox" to="." method="_on_pickup_box_area_entered"]

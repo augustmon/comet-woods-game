@@ -17,5 +17,5 @@ func _ready() -> void:
 		add_child(new_grass)
 	
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	rotate_component.rotate_from_input(delta)

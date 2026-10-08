@@ -11,6 +11,8 @@ var grounded_position : float
 @onready var blink_component: BlinkComponent = $BlinkComponent
 @onready var player_sprites: Sprite2D = $PlayerSprites
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var skid_particles: CPUParticles2D = $SkidParticles
+@onready var fsm: StateSwitcher = $StateSwitcher
 
 func _ready() -> void:
 	GameState.points_changed.connect(_on_points_changed)
@@ -29,8 +31,7 @@ func determine_game_over(health) -> void:
 	if health <= 0:
 		GameState.end_game()
 	
-		
-		
+
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	move_and_slide()

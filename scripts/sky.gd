@@ -14,10 +14,8 @@ func _ready() -> void:
 	pass
 
 	
-func _process(delta: float) -> void:
-	
+func _physics_process(delta: float) -> void:
 	rotate_component.rotate_from_input(delta)
-
 	add_moonlight()
 	increase_colour_alpha(delta, sky_colour)
 
