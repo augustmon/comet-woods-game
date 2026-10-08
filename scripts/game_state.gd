@@ -8,6 +8,9 @@ var high_scores : Array
 
 var game_time : int = 0
 
+# Use to show players own score.
+var current_score : Dictionary = {}
+
 signal points_changed
 var points : int = 0:
 	get:
@@ -32,7 +35,7 @@ func decrease_health_cooldown():
 		health_cooldown = false
 	
 
-func save_to_file(points_total, file_path) -> void: 
+func save_to_file(points_total, game_time, file_path) -> void: 
 	var save_file
 	if not FileAccess.file_exists(file_path):
 		save_file = SaveData.new() 
@@ -41,18 +44,27 @@ func save_to_file(points_total, file_path) -> void:
 		if not "all_scores" in save_file: 
 			save_file = SaveData.new() 
 			save_file.all_scores = [] 
-	save_file.all_scores.append({"points": points_total, "time": game_time})
+		var scores = load_from_file(save_data_path)
+		if scores: 
+			scores.sort_custom(func(a, b): return a.points > b.points)
+			var top_five_scores = scores.slice(0,5)
+			for score in top_five_scores: 
+				if current_score.points > score.points:
+					save_file.all_scores.append({"points": points_total, "time": game_time})
+					return 
 	ResourceSaver.save(save_file, file_path)
 
 	
-func load_from_file(file_path) -> void: 
+func load_from_file(file_path) -> Array: 
 	if FileAccess.file_exists(file_path):
 		var load_file = ResourceLoader.load(file_path)
 		if not "all_scores" in load_file: 
 			load_file = SaveData.new() 
-		high_scores = load_file.all_scores
+		return load_file.all_scores
 	else:
-		var load_file = "NO DATA"
+		var load_file = SaveData.new()
+		load_file.all_scores = []
+		return load_file
 			
 
 func flush_data(): 
@@ -66,18 +78,17 @@ func flush_data():
 
 signal game_over
 func end_game() -> void: 
-	print("You earned ", points, " points!")
-	print("You survived for: ", game_time)
-	save_to_file(points, save_data_path)
+	current_score = {"points": points, "time": game_time}
+	save_to_file(points, game_time, save_data_path)
+	print("Points: ", current_score.points, " time: ", current_score.time)
 	game_over.emit()
 	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
-	#get_tree().reload_current_scene()
+	
 
 
 func _ready() -> void:
 	start_game_time()
-	#save_to_file(points, save_data_path)
 
 
 func start_game_time() -> void:

@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6puvpcy1mhh3"]
+[gd_scene load_steps=8 format=3 uid="uid://b6puvpcy1mhh3"]
 
 [ext_resource type="Texture2D" uid="uid://b2fs4wevssde8" path="res://assets/textures/stripey_blue.png" id="1_035jw"]
 [ext_resource type="Script" uid="uid://cvjr35y4t7g4p" path="res://scenes/start_screen.gd" id="1_lbk5a"]
 [ext_resource type="Theme" uid="uid://dt5ugdhyikbs8" path="res://assets/main.theme" id="3_7f5r0"]
 [ext_resource type="FontFile" uid="uid://jgu5ufxn3o3r" path="res://assets/fonts/Super Water.ttf" id="4_g5bro"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_r2jwc"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_hm208"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_5pab1"]
+events = [SubResource("InputEventKey_r2jwc"), SubResource("InputEventKey_hm208")]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_lbk5a")
@@ -25,34 +37,39 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TitleLabel" type="Label" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -42.5
-offset_right = 42.5
-offset_bottom = 23.0
+offset_left = -105.0
+offset_right = 105.0
+offset_bottom = 234.0
 grow_horizontal = 2
+pivot_offset = Vector2(-263, -61)
+theme = ExtResource("3_7f5r0")
+theme_override_constants/separation = 48
+
+[node name="TitleLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("3_7f5r0")
 theme_type_variation = &"HeaderLarge"
 theme_override_constants/line_spacing = 24
 theme_override_font_sizes/font_size = 46
 text = "Highscores"
 
-[node name="ScoresLabel" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 89
+
+[node name="MessageLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_7f5r0")
+theme_override_colors/font_color = Color(0.891721, 0.615293, 1, 1)
+text = "Yay"
+
+[node name="ScoresLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("3_7f5r0")
 text = "1. 
 2.  
@@ -78,6 +95,7 @@ layout_mode = 2
 theme = ExtResource("3_7f5r0")
 theme_override_fonts/font = ExtResource("4_g5bro")
 theme_override_font_sizes/font_size = 54
+shortcut = SubResource("Shortcut_5pab1")
 text = "START"
 
 [connection signal="pressed" from="Control/ButtomContainer/StartButton" to="." method="_on_start_button_pressed"]
