@@ -671,5 +671,3 @@ color_ramp = SubResource("Gradient_a8ls1")
 color_initial_ramp = SubResource("Gradient_qfm1y")
 script = ExtResource("18_fulsm")
 
-[connection signal="area_entered" from="PlayerSprites/Body/PlayerBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="area_entered" from="PlayerSprites/Body/PickupBox" to="." method="_on_pickup_box_area_entered"]
