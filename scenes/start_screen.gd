@@ -23,4 +23,3 @@ func _ready():
 func _on_start_button_pressed() -> void:
 	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_packed(WORLD)
-

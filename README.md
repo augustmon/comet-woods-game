@@ -5,7 +5,7 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 
 **Vibe:** hectic, chaotic, aesthetic, autumn
 **Art references:** *Night in the Woods*, *Over the Garden Wall*, cutout art
-**Scope:** a hobby project. **Engine:** Godot (moving 4.4 → 4.7), Compatibility renderer
+**Scope:** a hobby project. **Engine:** Godot 4.7, Compatibility renderer
 
 ## Controls
 
@@ -29,10 +29,10 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 - [x] Remove the start-screen key that wipes all scores.
 - [x] Fix the jump buffer and short jump.
 - [x] Make crouch a dodge/slide. Right now crouching stops the world from rotating, which is a bug.
-- [ ] Finish the player state machine refactor, then merge it.
+- [x] Finish the player state machine refactor, then merge it.
 
 ### v1.0: browser release
-- [ ] Upgrade to Godot 4.7
+- [x] Upgrade to Godot 4.7
 - [ ] Add a Web export preset and host the game (itch.io or GitHub Pages)
 - [ ] Save scores in the browser. Godot stores `user://` in IndexedDB on the web, so the current resource save may already work there.
 - [ ] Add a win/lose screen
