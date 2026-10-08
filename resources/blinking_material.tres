@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bc37xtbn1wdkd"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bc37xtbn1wdkd"]
 
-[ext_resource type="Shader" path="res://resources/shaders/blinking.gdshader" id="1_f4t0p"]
+[ext_resource type="Shader" uid="uid://7mthgxwi7hr8" path="res://resources/shaders/blinking.gdshader" id="1_f4t0p"]
 
 [resource]
 shader = ExtResource("1_f4t0p")

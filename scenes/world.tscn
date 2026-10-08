@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs2nnkoboh3vq"]
+[gd_scene format=3 uid="uid://bs2nnkoboh3vq"]
 
 [ext_resource type="Script" uid="uid://dqp76qjg23qx2" path="res://scripts/world.gd" id="1_4dh82"]
 [ext_resource type="Script" uid="uid://cq5atax1w3usx" path="res://scripts/point_label.gd" id="1_6iqgl"]
@@ -68,55 +68,55 @@ _data = {
 &"start_zoom_out": SubResource("Animation_bmkqa")
 }
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=81774358]
 position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(0.448366, 0.448366)
 script = ExtResource("1_4dh82")
 
-[node name="Sky" parent="." instance=ExtResource("1_jyw6d")]
+[node name="Sky" parent="." unique_id=587692049 instance=ExtResource("1_jyw6d")]
 z_index = -1
 position = Vector2(978, 1233)
 scale = Vector2(0.95, 0.95)
 
-[node name="CometSpawner" parent="Sky" instance=ExtResource("3_8520w")]
+[node name="CometSpawner" parent="Sky" unique_id=575929463 instance=ExtResource("3_8520w")]
 
-[node name="Moon" type="Sprite2D" parent="Sky"]
+[node name="Moon" type="Sprite2D" parent="Sky" unique_id=1825944556]
 modulate = Color(1, 1, 1, 0.47451)
 position = Vector2(3.08707, -1188.14)
 scale = Vector2(0.365666, 0.365666)
 texture = ExtResource("7_nopxu")
 
-[node name="PointLight2D" type="PointLight2D" parent="Sky/Moon"]
+[node name="PointLight2D" type="PointLight2D" parent="Sky/Moon" unique_id=80085312]
 scale = Vector2(0.487336, 0.487336)
 color = Color(0.47451, 0.729412, 0.92549, 1)
 energy = 0.4
 texture = SubResource("GradientTexture2D_rdsbo")
 texture_scale = 50.0
 
-[node name="Ground" parent="." instance=ExtResource("1_bfr17")]
+[node name="Ground" parent="." unique_id=773055500 instance=ExtResource("1_bfr17")]
 unique_name_in_owner = true
 position = Vector2(978, 1393)
 
-[node name="Player" parent="." instance=ExtResource("2_hyots")]
+[node name="Player" parent="." unique_id=1377909661 instance=ExtResource("2_hyots")]
 position = Vector2(981.342, 711.472)
 
-[node name="Platform" type="StaticBody2D" parent="."]
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1069372381]
 position = Vector2(979.111, 802.915)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=83842701]
 position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_emeci")
 
-[node name="Dimness" type="DirectionalLight2D" parent="."]
+[node name="Dimness" type="DirectionalLight2D" parent="." unique_id=71068466]
 energy = 0.18
 blend_mode = 1
 shadow_enabled = true
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1166531568]
 
-[node name="ScreenSizeAnchor" type="Control" parent="UI"]
+[node name="ScreenSizeAnchor" type="Control" parent="UI" unique_id=717392673]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,7 +124,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OuterMargin" type="MarginContainer" parent="UI/ScreenSizeAnchor"]
+[node name="OuterMargin" type="MarginContainer" parent="UI/ScreenSizeAnchor" unique_id=569480056]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -133,27 +133,27 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 16
 
-[node name="PanelContainerBG" type="PanelContainer" parent="UI/ScreenSizeAnchor/OuterMargin"]
+[node name="PanelContainerBG" type="PanelContainer" parent="UI/ScreenSizeAnchor/OuterMargin" unique_id=1795327686]
 custom_minimum_size = Vector2(150, 86)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_e3om4")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG" unique_id=717622083]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer" unique_id=193710986]
 layout_mode = 2
 
-[node name="PointBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
+[node name="PointBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer" unique_id=1381114721]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PointLabel" type="Label" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox"]
+[node name="PointLabel" type="Label" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox" unique_id=979506305]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -162,12 +162,12 @@ text = "41"
 max_lines_visible = 1
 script = ExtResource("1_6iqgl")
 
-[node name="StarUI" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox" instance=ExtResource("12_ide3p")]
+[node name="StarUI" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox" unique_id=354657703 instance=ExtResource("12_ide3p")]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="StarIcon" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox/StarUI"]
+[node name="StarIcon" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/PointBox/StarUI" unique_id=741059604]
 clip_children = 2
 position = Vector2(-3, 0)
 rotation = -1.54985
@@ -179,20 +179,20 @@ texture_offset = Vector2(2.08165e-12, 2.08165e-12)
 polygon = PackedVector2Array(-2, -4, 2, -8, 4, -1, 9, 1, 3, 4, 2, 10, -2, 6, -8, 6, -5, 1, -8, -4)
 uv = PackedVector2Array(23.5488, 16.4546, 32.8218, 7.18161, 37.4583, 23.4094, 49.0495, 28.0459, 35.14, 35.0006, 32.8218, 48.9101, 23.5488, 39.6371, 9.63925, 39.6371, 16.594, 28.0459, 9.63925, 16.4546)
 
-[node name="Splitter" type="Control" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
+[node name="Splitter" type="Control" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer" unique_id=615129222]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 
-[node name="HeartBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer"]
+[node name="HeartBox" type="HBoxContainer" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer" unique_id=2083754095]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("8_3t0p4")
 
-[node name="Heart" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" instance=ExtResource("12_ide3p")]
+[node name="Heart" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" unique_id=832292899 instance=ExtResource("12_ide3p")]
 layout_mode = 2
 size_flags_vertical = 1
 
-[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart"]
+[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart" unique_id=123970765]
 texture_filter = 1
 scale = Vector2(0.6, 0.6)
 color = Color(1, 0, 0, 1)
@@ -201,11 +201,11 @@ texture = ExtResource("8_ypd28")
 polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
 uv = PackedVector2Array(211.398, 424.589, 97.8259, 326.16, 112.969, 189.874, 196.255, 167.159, 279.541, 227.731, 340.113, 174.731, 438.542, 174.731, 461.256, 265.588, 377.97, 394.303, 279.541, 462.446)
 
-[node name="Heart2" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" instance=ExtResource("12_ide3p")]
+[node name="Heart2" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" unique_id=540559370 instance=ExtResource("12_ide3p")]
 layout_mode = 2
 size_flags_vertical = 1
 
-[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart2"]
+[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart2" unique_id=1926497817]
 texture_filter = 1
 scale = Vector2(0.6, 0.6)
 color = Color(1, 0, 0, 1)
@@ -214,11 +214,11 @@ texture = ExtResource("8_ypd28")
 polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
 uv = PackedVector2Array(211.398, 424.589, 97.8259, 326.16, 112.969, 189.874, 196.255, 167.159, 279.541, 227.731, 340.113, 174.731, 438.542, 174.731, 461.256, 265.588, 377.97, 394.303, 279.541, 462.446)
 
-[node name="Heart3" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" instance=ExtResource("12_ide3p")]
+[node name="Heart3" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox" unique_id=1643247100 instance=ExtResource("12_ide3p")]
 layout_mode = 2
 size_flags_vertical = 1
 
-[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart3"]
+[node name="HeartPoly" type="Polygon2D" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer/VBoxContainer/HeartBox/Heart3" unique_id=1253478799]
 texture_filter = 1
 scale = Vector2(0.6, 0.6)
 color = Color(1, 0, 0, 1)
@@ -227,20 +227,18 @@ texture = ExtResource("8_ypd28")
 polygon = PackedVector2Array(2.22418, 10.6222, -12.7758, -2.37778, -10.7758, -20.3778, 0.224183, -23.3778, 11.2242, -15.3778, 19.2242, -22.3778, 32.2242, -22.3778, 35.2242, -10.3778, 24.2242, 6.62222, 11.2242, 15.6222)
 uv = PackedVector2Array(211.398, 424.589, 97.8259, 326.16, 112.969, 189.874, 196.255, 167.159, 279.541, 227.731, 340.113, 174.731, 438.542, 174.731, 461.256, 265.588, 377.97, 394.303, 279.541, 462.446)
 
-[node name="ColorRect" type="ColorRect" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="UI/ScreenSizeAnchor/OuterMargin/PanelContainerBG/MarginContainer" unique_id=607329684]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(0.192157, 0.192157, 0.192157, 0.635294)
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=181304265]
 position = Vector2(2.08165e-12, 2.08165e-12)
 offset = Vector2(2.08165e-12, 2.08165e-12)
 anchor_mode = 0
 position_smoothing_enabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCamera"]
-libraries = {
-&"": SubResource("AnimationLibrary_tm26d")
-}
-autoplay = "start_zoom_out"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCamera" unique_id=1068714739]
+libraries/ = SubResource("AnimationLibrary_tm26d")
+autoplay = &"start_zoom_out"

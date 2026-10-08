@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dasfn3553wadw"]
+[gd_scene format=3 uid="uid://dasfn3553wadw"]
 
 [ext_resource type="Script" uid="uid://b1jvmgnmnfuu6" path="res://scripts/ground.gd" id="1_mskge"]
 [ext_resource type="Texture2D" uid="uid://4hpdv1bx5kdk" path="res://assets/textures/murkey_green.png" id="2_76awd"]
@@ -10,38 +10,38 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4isgm"]
 
-[node name="Ground" type="StaticBody2D"]
+[node name="Ground" type="StaticBody2D" unique_id=1050587903]
 collision_mask = 0
 script = ExtResource("1_mskge")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1682199034]
 scale = Vector2(61, 61)
 shape = SubResource("CircleShape2D_tci68")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=943709720]
 collision_mask = 0
 
-[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox" unique_id=276971698]
 scale = Vector2(59.4021, 59.4021)
 shape = SubResource("CircleShape2D_4isgm")
 debug_color = Color(0.901961, 0.290196, 0.294118, 0.419608)
 
-[node name="PlanetSprite" type="Sprite2D" parent="."]
+[node name="PlanetSprite" type="Sprite2D" parent="." unique_id=1588626145]
 position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(3.15, 3.15)
 texture = ExtResource("2_76awd")
 
-[node name="SkylineSprite2" type="Sprite2D" parent="."]
+[node name="SkylineSprite2" type="Sprite2D" parent="." unique_id=81600352]
 modulate = Color(1, 1, 1, 0.360784)
 show_behind_parent = true
 scale = Vector2(5.01413, 5.01413)
 texture = ExtResource("3_xlsnd")
 
-[node name="RotateComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="RotateComponent" type="Node" parent="." unique_id=238454459 node_paths=PackedStringArray("actor")]
 script = ExtResource("5_wmsjm")
 actor = NodePath("..")
 MAX_ROTATION_SPEED = 1.5
 FRICTION = 15.0
 
-[node name="RandomSpawnPositionComponent" type="Node" parent="."]
+[node name="RandomSpawnPositionComponent" type="Node" parent="." unique_id=860596704]
 script = ExtResource("6_3nrkc")

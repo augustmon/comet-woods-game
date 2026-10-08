@@ -1,29 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://crelxtgs6qo0p"]
+[gd_scene format=3 uid="uid://crelxtgs6qo0p"]
 
 [ext_resource type="Script" uid="uid://dxou4ao8gqkd2" path="res://scripts/celestial_object.gd" id="1_3v33p"]
 [ext_resource type="PackedScene" uid="uid://dj3a8c2ruetkn" path="res://scenes/utility/hit_area.tscn" id="3_y8ed0"]
 
-[node name="CelestialObject" type="StaticBody2D"]
+[node name="CelestialObject" type="StaticBody2D" unique_id=320811220]
 z_index = 1
 z_as_relative = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3v33p")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=669369302]
 offset = Vector2(2.08165e-12, 2.08165e-12)
 texture_offset = Vector2(-23, -17)
 texture_scale = Vector2(-15.6, -15.6)
 polygon = PackedVector2Array(-11, 3, -11, -13, -2, -17, 10, -15, 18, -10, 22, 4, 12, 11, 2, 13, -6, 9)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=105839980]
 
-[node name="HitArea" parent="." instance=ExtResource("3_y8ed0")]
+[node name="HitArea" parent="." unique_id=545537566 instance=ExtResource("3_y8ed0")]
 collision_layer = 0
 
-[node name="GroundCollision" type="Area2D" parent="."]
+[node name="GroundCollision" type="Area2D" parent="." unique_id=1655605159]
 collision_layer = 0
 
-[node name="GroundCollisionPolygon" type="CollisionPolygon2D" parent="GroundCollision"]
+[node name="GroundCollisionPolygon" type="CollisionPolygon2D" parent="GroundCollision" unique_id=264145090]
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]

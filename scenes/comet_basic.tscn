@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bla3a6qvvipc8"]
+[gd_scene format=3 uid="uid://bla3a6qvvipc8"]
 
 [ext_resource type="PackedScene" uid="uid://crelxtgs6qo0p" path="res://scenes/celestial_object.tscn" id="1_b3lmw"]
 [ext_resource type="Script" uid="uid://bauek4v1mov5e" path="res://scripts/comet_basic.gd" id="2_ibxsp"]
@@ -84,30 +84,30 @@ _data = {
 &"burning": SubResource("Animation_8fvpp")
 }
 
-[node name="CometBasic" instance=ExtResource("1_b3lmw")]
+[node name="CometBasic" unique_id=2004600187 instance=ExtResource("1_b3lmw")]
 script = ExtResource("2_ibxsp")
 celestial_object_data = ExtResource("3_r3br3")
 
-[node name="DamageArea" type="Area2D" parent="." index="0"]
+[node name="DamageArea" type="Area2D" parent="." index="0" unique_id=1282374675]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0" unique_id=445007018]
 position = Vector2(-4, -2)
 rotation = -1.6267
 shape = SubResource("CapsuleShape2D_hqisj")
 
-[node name="Polygon2D" parent="." index="1"]
+[node name="Polygon2D" parent="." index="1" unique_id=669369302]
 texture = ExtResource("4_o2lfr")
 polygon = PackedVector2Array(-11, 3, -11, -13, -2, -17, 10, -15, 16, -9, 17, 1, 10, 10, 2, 13, -6, 9)
 
-[node name="SmokeTrail" type="CPUParticles2D" parent="." index="4"]
+[node name="SmokeTrail" type="CPUParticles2D" parent="." index="4" unique_id=1164760713]
 show_behind_parent = true
 amount = 42
+texture = ExtResource("5_ktawy")
 lifetime = 8.0
 speed_scale = 8.0
 lifetime_randomness = 0.1
-texture = ExtResource("5_ktawy")
 particle_flag_align_y = true
 gravity = Vector2(2.08165e-12, 2.08165e-12)
 scale_amount_min = 0.1
@@ -115,15 +115,15 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_h87i3")
 color_ramp = SubResource("Gradient_csgr0")
 
-[node name="GroundSmoke" type="CPUParticles2D" parent="." index="5"]
+[node name="GroundSmoke" type="CPUParticles2D" parent="." index="5" unique_id=1379215198]
 modulate = Color(1, 1, 1, 0.776471)
 z_as_relative = false
 emitting = false
 amount = 24
+texture = ExtResource("5_ktawy")
 lifetime = 0.2
 one_shot = true
 speed_scale = 0.6
-texture = ExtResource("5_ktawy")
 direction = Vector2(0, -1)
 gravity = Vector2(0, 0)
 initial_velocity_min = 35.43
@@ -131,12 +131,12 @@ initial_velocity_max = 86.62
 scale_amount_min = 0.3
 scale_amount_max = 0.5
 
-[node name="Firetail" type="Node2D" parent="." index="6"]
+[node name="Firetail" type="Node2D" parent="." index="6" unique_id=701024661]
 modulate = Color(1, 1, 1, 0.584314)
 material = SubResource("ShaderMaterial_j8783")
 rotation = -0.181514
 
-[node name="Fire1" type="Polygon2D" parent="Firetail" index="0"]
+[node name="Fire1" type="Polygon2D" parent="Firetail" index="0" unique_id=1745379611]
 visible = false
 modulate = Color(0, 0.745098, 0.945098, 0.447059)
 texture_filter = 1
@@ -149,7 +149,7 @@ texture_offset = Vector2(-55, 2.08165e-12)
 texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(-15, -20, -25, -49, -17.736, -46.7878, -15, -81, -7, -64, 5.07976, -90.8581, 12, -66, 30.5368, -80.4208, 24, -49, 45, -53, 25, -20, 36, -23, 7, -6, -3.3421, -6.37717)
 
-[node name="Fire2" type="Polygon2D" parent="Firetail" index="1"]
+[node name="Fire2" type="Polygon2D" parent="Firetail" index="1" unique_id=202663675]
 modulate = Color(0.141176, 0.870588, 1, 0.65098)
 texture_filter = 1
 use_parent_material = true
@@ -161,12 +161,10 @@ texture_offset = Vector2(-55, 2.08165e-12)
 texture_scale = Vector2(-6, -6)
 polygon = PackedVector2Array(-15, -20, -20.5988, -56.9956, -17.6428, -48.7848, -7.64771, -84.1704, -7, -64, 11.0292, -90.9298, 13.4269, -70.7376, 27.2977, -81.8257, 27.6592, -53.7578, 36.4447, -63.1839, 26.3566, -25.8014, 33.0129, -25.3548, 7.21451, -9.05762, -2.76989, -9.72752)
 
-[node name="Firetail_Animation" type="AnimationPlayer" parent="Firetail" index="2"]
+[node name="Firetail_Animation" type="AnimationPlayer" parent="Firetail" index="2" unique_id=1948465366]
 root_node = NodePath("../Fire1")
-libraries = {
-&"": SubResource("AnimationLibrary_1y7ye")
-}
-autoplay = "burning"
+libraries/ = SubResource("AnimationLibrary_1y7ye")
+autoplay = &"burning"
 
-[node name="NoseMarker" type="Marker2D" parent="." index="8"]
+[node name="NoseMarker" type="Marker2D" parent="." index="8" unique_id=686930380]
 position = Vector2(17, -2)

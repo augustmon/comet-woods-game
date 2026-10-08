@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnouywtk3gy15"]
+[gd_scene format=3 uid="uid://bnouywtk3gy15"]
 
 [ext_resource type="Script" uid="uid://cw4t012phou15" path="res://scripts/grass.gd" id="2_c88uv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5i6a4"]
 
-[node name="Grass" type="Sprite2D"]
+[node name="Grass" type="Sprite2D" unique_id=263817489]
 modulate = Color(0.227451, 0.615686, 0.415686, 1)
 position = Vector2(0.0403595, -4.05453)
 scale = Vector2(0.36684, 0.36684)

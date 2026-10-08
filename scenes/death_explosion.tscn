@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqw4wyekyohch"]
+[gd_scene format=3 uid="uid://bqw4wyekyohch"]
 
 [ext_resource type="Texture2D" uid="uid://cladde5y13v0q" path="res://assets/particle_textures/smoke_particle.png" id="1_ktj6s"]
 [ext_resource type="Texture2D" uid="uid://dtlx7171pb7wy" path="res://assets/textures/red_brown.png" id="2_8g1b5"]
@@ -21,16 +21,16 @@ fill_to = Vector2(2.08165e-12, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxowe"]
 radius = 50.04
 
-[node name="DeathExplosion" type="CPUParticles2D"]
+[node name="DeathExplosion" type="CPUParticles2D" unique_id=36396643]
 modulate = Color(1, 1, 1, 0.776471)
 z_as_relative = false
 emitting = false
 amount = 24
+texture = ExtResource("1_ktj6s")
 lifetime = 0.2
 one_shot = true
 speed_scale = 0.6
 local_coords = true
-texture = ExtResource("1_ktj6s")
 direction = Vector2(0, -1)
 spread = 87.23
 gravity = Vector2(0, -980)
@@ -38,17 +38,17 @@ initial_velocity_min = 88.46
 initial_velocity_max = 165.38
 script = ExtResource("2_b4exi")
 
-[node name="CometVanish" type="CPUParticles2D" parent="."]
+[node name="CometVanish" type="CPUParticles2D" parent="." unique_id=353584577]
 modulate = Color(1, 1, 1, 0.552941)
 scale = Vector2(0.21, 0.21)
 emitting = false
 amount = 16
+texture = ExtResource("2_8g1b5")
 lifetime = 0.7
 one_shot = true
 speed_scale = 2.0
 explosiveness = 0.8
 local_coords = true
-texture = ExtResource("2_8g1b5")
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
@@ -65,19 +65,19 @@ tangential_accel_max = 40.94
 color = Color(1, 0.643, 0.49, 0.611765)
 color_ramp = SubResource("Gradient_r834m")
 
-[node name="HitArea" type="Area2D" parent="CometVanish"]
+[node name="HitArea" type="Area2D" parent="CometVanish" unique_id=1118493230]
 scale = Vector2(3.33333, 3.33333)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_r7q6l")
 
-[node name="FireLight" type="PointLight2D" parent="CometVanish/HitArea"]
+[node name="FireLight" type="PointLight2D" parent="CometVanish/HitArea" unique_id=159353797]
 scale = Vector2(2.71494, 2.66146)
 color = Color(1, 1, 0.654902, 1)
 energy = 0.6
 texture = SubResource("GradientTexture2D_w1kt6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CometVanish/HitArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CometVanish/HitArea" unique_id=152285125]
 shape = SubResource("CircleShape2D_uxowe")
 
 [connection signal="area_entered" from="CometVanish/HitArea" to="." method="_on_hit_area_area_entered"]
