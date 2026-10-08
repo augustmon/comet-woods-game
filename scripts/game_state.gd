@@ -62,7 +62,7 @@ func write_scores(scores: Array) -> void:
 	if error != OK:
 		push_error("Could not save scores: ", error_string(error))
 
-# Debug: call from the Panku console with GameState.clear_scores()
+# Debug: wipes all saved scores
 func clear_scores() -> void: 
 	write_scores([])
 
