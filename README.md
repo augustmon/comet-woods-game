@@ -43,7 +43,7 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 - [ ] Populate the world (moon ✅, grass ✅). Still to do: trees and bushes, leaves blowing when the world rotates.
 
 ### Size & performance
-- [ ] Commit `assets/` (only about 5 MB) and stop committing builds in `exports/` (about 56 MB)
+- [x] Commit `assets/` (only about 5 MB) and stop committing builds in `exports/` (about 56 MB)
 - [ ] Shrink the textures (about 400 KB each): smaller sizes, WebP/lossy compression, atlases
 - [ ] Load fonts only for the glyphs the game uses
 - [x] Remove the debug console (Panku). It crashed release web builds.
