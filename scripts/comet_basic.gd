@@ -9,6 +9,7 @@ const DEATH_EXPLOSION = preload("res://scenes/death_explosion.tscn")
 @onready var nose_marker: Marker2D = $NoseMarker
 
 func _on_ground_collision_entered(area: Area2D) -> void:
+	Audio.play_sfx("impact")
 	if not celestial_object_data.wait_time and not extra_waiting_time:
 		create_explosion()
 		queue_free()

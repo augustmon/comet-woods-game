@@ -37,9 +37,10 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 - [ ] Host the game (itch.io or GitHub Pages)
 - [x] Save scores in the browser. Godot stores `user://` in IndexedDB; tested in a release web build.
 - [ ] Add a win/lose screen
+- [x] Audio skeleton: `Audio` autoload, Music/SFX buses, music layers follow `GameState.intensity` (placeholder sounds)
 - [ ] Add sound effects: run, world rotation, comet impact, star catch
 - [ ] Add music that builds in intensity, matched to the difficulty curve
-- [ ] Difficulty scaling (spawn rate ✅). Still to do: comet speed, longer ground time, comets that target the player.
+- [ ] Difficulty scaling (comet speed ✅, burning comets ✅). Still to do: spawn rate, longer ground time, comets that target the player.
 - [ ] Populate the world (moon ✅, grass ✅). Still to do: trees and bushes, leaves blowing when the world rotates.
 
 ### Size & performance

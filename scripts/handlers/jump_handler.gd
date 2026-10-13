@@ -21,6 +21,7 @@ func jump() -> void:
 	jump_buffer_timer.stop()
 	player.velocity.y = player.JUMP_VELOCITY
 	player.animation_player.play("jump")
+	Audio.play_sfx("jump")
 
 # Shorten jumps - release button quickly for shorter jump
 func cut_jump() -> void:

@@ -7,6 +7,15 @@ const MAX_SCORES : int = 5
 
 var game_time : int = 0
 
+# 0 -> 1 over INTENSITY_RAMP_TIME seconds of play. Drives the music layers.
+const INTENSITY_RAMP_TIME : float = 120.0
+var playing : bool = false
+var intensity : float:
+	get:
+		if not playing:
+			return 0.0
+		return clampf(game_time / INTENSITY_RAMP_TIME, 0.0, 1.0)
+
 # Use to show players own score.
 var current_score : Dictionary = {}
 var current_score_is_top : bool = false
@@ -72,6 +81,7 @@ func end_game() -> void:
 	if game_ended: # Several hits in one frame can end the game twice
 		return
 	game_ended = true
+	playing = false
 	current_score = {"points": points, "time": game_time}
 	current_score_is_top = save_score(current_score)
 	game_over.emit()
@@ -102,6 +112,7 @@ func increment_time():
 
 func clear() -> void: 
 	game_ended = false
+	playing = true
 	game_time = 0 
 	points = 0
 	health = 3 
