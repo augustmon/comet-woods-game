@@ -40,7 +40,7 @@ The game was earlier called "Project Zero". Names considered: Comet Forest, Come
 - [x] Audio skeleton: `Audio` autoload, Music/SFX buses, music layers follow `GameState.intensity` (placeholder sounds)
 - [ ] Add sound effects: run, world rotation, comet impact, star catch
 - [ ] Add music that builds in intensity, matched to the difficulty curve
-- [ ] Difficulty scaling (comet speed ✅, burning comets ✅). Still to do: spawn rate, longer ground time, comets that target the player.
+- [ ] Difficulty scaling: smooth and endless, all curves in `scripts/difficulty.gd` (spawn rate ✅, comet speed ✅, burning comets ✅). Still to do: longer ground time, comets that target the player, playtest tuning.
 - [ ] Populate the world (moon ✅, grass ✅). Still to do: trees and bushes, leaves blowing when the world rotates.
 
 ### Size & performance

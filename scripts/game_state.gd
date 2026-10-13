@@ -7,14 +7,14 @@ const MAX_SCORES : int = 5
 
 var game_time : int = 0
 
-# 0 -> 1 over INTENSITY_RAMP_TIME seconds of play. Drives the music layers.
-const INTENSITY_RAMP_TIME : float = 120.0
+# Rises smoothly by 1.0 per minute of play, without limit. Drives
+# difficulty (see Difficulty) and music. 0 outside a game.
+const INTENSITY_PER_SECOND : float = 1.0 / 60.0
 var playing : bool = false
+var play_time : float = 0.0
 var intensity : float:
 	get:
-		if not playing:
-			return 0.0
-		return clampf(game_time / INTENSITY_RAMP_TIME, 0.0, 1.0)
+		return play_time * INTENSITY_PER_SECOND if playing else 0.0
 
 # Use to show players own score.
 var current_score : Dictionary = {}
@@ -94,6 +94,11 @@ func _ready() -> void:
 	start_game_time()
 
 
+func _process(delta: float) -> void:
+	if playing:
+		play_time += delta
+
+
 func start_game_time() -> void:
 	var timer = Timer.new()
 	timer.wait_time = 1
@@ -113,6 +118,7 @@ func increment_time():
 func clear() -> void: 
 	game_ended = false
 	playing = true
+	play_time = 0.0
 	game_time = 0 
 	points = 0
 	health = 3 

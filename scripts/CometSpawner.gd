@@ -12,7 +12,6 @@ const STAR = preload("res://scenes/shooting_star.tscn")
 @export var radius : int = 1600
 
 var ground_center : Vector2
-var chance_of_comet_burning : int = 0
 
 
 func _ready() -> void:
@@ -34,23 +33,14 @@ func _input(event: InputEvent) -> void:
 func spawn_celestial(scene : PackedScene, is_burning : bool = false) -> void:
 	var new_object = scene.instantiate()
 	new_object.SPAWN_POINT = random_spawn_position_component.random_spawn_position(ground_center, radius)
-	new_object.speed_multiplier = 1 + GameState.game_time/100.0
+	new_object.speed_multiplier = Difficulty.comet_speed(GameState.intensity)
 	
 	if new_object.name == "CometBasic":
-		determine_chance_of_comet_burning()
-		if randi_range(0,100) < chance_of_comet_burning or is_burning:
+		if randf() < Difficulty.burn_chance(GameState.intensity) or is_burning:
 			new_object.modulate = Color.DIM_GRAY
 			new_object.extra_waiting_time = randf_range(1.5,5.0)
 	get_parent().add_child(new_object)
-	
-func determine_chance_of_comet_burning() -> void: 
-	if GameState.game_time > 60:
-		chance_of_comet_burning = 50
-	if GameState.game_time > 30: 
-		chance_of_comet_burning = 20
-	if GameState.game_time > 10:
-		chance_of_comet_burning = 10
-	
+
 func random_spawn_position() -> Vector2:
 	var random_angle = randi_range(1,359)
 	var x_coord = ground_center.x + radius * cos(random_angle)
@@ -62,7 +52,7 @@ func random_spawn_position() -> Vector2:
 func _on_spawntimer_timeout() -> void:
 	var new_object = choose_random_celestial()
 	spawn_celestial(new_object)
-	spawntimer.wait_time = randf_range(0.1,0.9)
+	spawntimer.wait_time = Difficulty.spawn_interval(GameState.intensity)
 	spawntimer.start()
 
 
